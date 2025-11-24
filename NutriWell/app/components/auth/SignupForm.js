@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { View, TextInput, Button, Text, StyleSheet } from "react-native";
+import Constants from "expo-constants";
+
+
 
 export default function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const baseURL = Constants.expoConfig.extra.BASE_URL;
 
   const handleSignup = async () => {
     try {
-      const res = await fetch("http://<your-server-ip>:5000/auth/signup", {
+      const res = await fetch(`http://192.168.1.27:5000/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

@@ -14,6 +14,7 @@ import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from "expo-constants";
 
 
 export default function Chatbot() {
@@ -22,6 +23,7 @@ export default function Chatbot() {
   const scrollViewRef = useRef();
   const router = useRouter();
   const [userId, setUserId] = useState(null);
+  const baseURL = Constants.expoConfig.extra.BASE_URL;
   useEffect(() => {
       const fetchData = async () => {
         const storedId = await AsyncStorage.getItem("userId");
@@ -52,13 +54,13 @@ export default function Chatbot() {
     try {
       // 1. Fetch today's meals and nutrition from Node.js backend
       console.log("user id before backend api",userId);
-      const response = await fetch(`http://10.12.25.196:5000/api/details/${userId}/getTodaysMealsAndNutrition`);
+      const response = await fetch(`http://192.168.1.27:5000/api/details/${userId}/getTodaysMealsAndNutrition`);
       const mealData = await response.json(); // ✅ Store it in a variable
   
       console.log("meal data from backend", mealData);
   
       // 2. Send it to the Flask chatbot server
-      const chatbotResponse = await axios.post("10.12.25.196:5001/chatbot", {
+      const chatbotResponse = await axios.post(`http://192.168.1.27:5001/chatbot`, {
         userData: mealData,
         query: trimmedQuery,
       });
@@ -118,7 +120,7 @@ export default function Chatbot() {
           style={styles.input}
           value={query}
           onChangeText={(text) => setQuery(text)}
-          placeholder="Ask job query..."
+          placeholder="Ask me..."
           onSubmitEditing={fetchAndSendToChatbot}
           returnKeyType="send"
           blurOnSubmit={true}

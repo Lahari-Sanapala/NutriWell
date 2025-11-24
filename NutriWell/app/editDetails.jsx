@@ -10,6 +10,8 @@ import {
   ScrollView, Alert, FlatList, Modal,ImageBackground
 } from 'react-native';
 
+import Constants from "expo-constants";
+
 const indianStates = [
   'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa',
   'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala',
@@ -32,6 +34,7 @@ export default function editDetails() {
   const [errors, setErrors] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
    const [userId, setUserId] = useState(null);
+const baseURL = Constants.expoConfig.extra.BASE_URL;
 
   const validatePage1 = () => {
     const newErrors = {};
@@ -101,7 +104,7 @@ export default function editDetails() {
         healthIssues: healthIssuesList,
       };
   
-      const response = await fetch("http://10.12.25.196:5000/api/details/submit", {
+      const response = await fetch(`http://192.168.1.27:5000/api/details/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -177,7 +180,7 @@ useEffect(() => {
       // const storedUserId = await AsyncStorage.getItem('userId');
       // if (!storedUserId) return;
 
-      const response = await fetch(`http://10.12.25.196:5000/api/details/${userId}/edit-details`);
+      const response = await fetch(`http://192.168.1.27:5000/api/details/${userId}/edit-details`);
       const data = await response.json();
 
       if (response.ok) {

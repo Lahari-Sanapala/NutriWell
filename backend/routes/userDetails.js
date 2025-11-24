@@ -6,6 +6,9 @@ const User = require("../models/UserDetails");
 const mongoose = require("mongoose");
 const moment = require("moment-timezone");
 const { getAllNotifications } = require('../storage/store');
+require("dotenv").config();
+
+const baseURL = process.env.BASE_URL;
 const getIndianDate = () => {
   // Create date object
   const date = new Date();
@@ -72,7 +75,7 @@ router.post("/upload-image", async (req, res) => {
 
    
     
-    const pythonResponse = await axios.post("http://10.12.25.196:8501/analyze", {
+    const pythonResponse = await axios.post(`http://${baseURL}:8501/analyze`, {
       base64Image
   });
 
@@ -80,7 +83,7 @@ router.post("/upload-image", async (req, res) => {
   console.log("🍽 Summary:", summary);
 
   // Send summary to get calorie estimation
-  const pythonResponseCalorie = await axios.post("http://10.12.25.196:8501/analyzeCalorie", {
+  const pythonResponseCalorie = await axios.post(`http://${baseURL}:8501/analyzeCalorie`, {
       summary
   });
 

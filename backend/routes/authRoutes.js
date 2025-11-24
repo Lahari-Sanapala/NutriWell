@@ -10,6 +10,9 @@ require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+
+const baseURL = process.env.BASE_URL;
+
 // Sign up
 router.post("/signup", async (req, res) => {
   const { fullName, email, password } = req.body;
@@ -117,7 +120,7 @@ router.post('/forgot-password', async (req, res) => {
       from: 'asiyashaik7867@gmail.com',
       to: email,
       subject: 'Password Reset',
-      text: `You requested a password reset. Click here to reset: http://192.168.240.19/reset-password/${resetToken}`,
+      text: `You requested a password reset. Click here to reset: http://${baseURL}/reset-password/${resetToken}`,
     };
 
     await transporter.sendMail(mailOptions);

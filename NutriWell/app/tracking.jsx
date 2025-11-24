@@ -149,7 +149,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import Constants from "expo-constants";
 
 
 export default function Tracking() {
@@ -157,6 +157,7 @@ export default function Tracking() {
   const [meals, setMeals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState(null);
+  const baseURL = Constants.expoConfig.extra.BASE_URL;
 
   useEffect(() => {
       const fetchData = async () => {
@@ -178,7 +179,7 @@ export default function Tracking() {
   //   const fetchMeals = async () => {
   //     try {
   //       // Replace 'userId' with actual user ID from your auth system
-  //       const response = await axios.get('http://192.168.132.131:5000/api/details/${userId}/meals');
+  //       const response = await axios.get(`http://192.168.1.27:5000/api/details/${userId}/meals`);
   //       setMeals(response.data);
   //     } catch (error) {
   //       console.error('Error fetching meals:', error);
@@ -195,7 +196,7 @@ export default function Tracking() {
       try {
         setLoading(true);
         console.log("sending user id to meals route from tracking",userId)
-        const response = await fetch(`http://10.12.25.196:5000/api/details/${userId}/meals`);
+        const response = await fetch(`http://192.168.1.27:5000/api/details/${userId}/meals`);
         
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);

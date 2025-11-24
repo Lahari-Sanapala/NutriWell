@@ -6,7 +6,7 @@ import { PieChart } from 'react-native-chart-kit';
 import * as Progress from 'react-native-progress';
 import img from "../assets/images/blue_green.jpeg";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import Constants from "expo-constants";
 
 const dietPlans = [
   {
@@ -98,7 +98,8 @@ export default function NutriWellHomeScreen() {
     });
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
-    const [userId, setUserId] = useState(null)
+    const [userId, setUserId] = useState(null);
+    const baseURL = Constants.expoConfig.extra.BASE_URL;
     
 
     useEffect(() => {
@@ -122,7 +123,7 @@ export default function NutriWellHomeScreen() {
         try {
          
           
-          const response = await fetch(`http://10.12.25.196:5000/api/auth/${userId}/basic-info`);
+          const response = await fetch(`http://192.168.1.27:5000/api/auth/${userId}/basic-info`);
           const data = await response.json();
           
           if (response.ok) {
@@ -146,7 +147,7 @@ export default function NutriWellHomeScreen() {
     // Fetch daily totals when component mounts
       const fetchDailyTotals = async () => {
         try {
-          const response = await fetch(`http://10.12.25.196:5000/api/details/${userId}/daily-totals`);
+          const response = await fetch(`http://192.168.1.27:5000/api/details/${userId}/daily-totals`);
           const data = await response.json();
           console.log("response from daily-totals",data);
           if (data.totals) {
@@ -158,7 +159,7 @@ export default function NutriWellHomeScreen() {
       };
       const fetchWeeklyTotals = async () => {
         try {
-          const response = await fetch(`http://10.12.25.196:5000/api/details/${userId}/weekly-totals`);
+          const response = await fetch(`http://192.168.1.27:5000/api/details/${userId}/weekly-totals`);
           const data = await response.json();
           console.log("response from weekly-totals",data);
           if (data.weeklyTotals) {

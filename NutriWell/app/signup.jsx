@@ -36,8 +36,8 @@
   
 //     try {
 //       const endpoint = isLogin
-//         ? 'http://192.168.132.131:5000/api/auth/login'
-//         : 'http://192.168.132.131:5000/api/auth/signup';
+//         ? `http://192.168.1.27:5000/api/auth/login`
+//         : `http://192.168.1.27:5000/api/auth/signup`;
   
 //       const payload = isLogin
 //         ? { email, password }
@@ -248,7 +248,7 @@ import { Ionicons } from '@expo/vector-icons'; // For eye icon
 import logo from '../assets/images/logo.jpg';
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import Constants from "expo-constants";
 
 
 
@@ -260,6 +260,7 @@ export default function AuthScreen() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const baseURL = Constants.expoConfig.extra.BASE_URL;
 
   const handleAuth = async () => {
     if (!email || !password || (!isLogin && !fullName)) {
@@ -280,8 +281,8 @@ export default function AuthScreen() {
   
     try {
       const endpoint = isLogin
-        ? "http://10.12.25.196:5000/api/auth/login"
-        : "http://10.12.25.196:5000/api/auth/signup";
+        ? `http://192.168.1.27:5000/api/auth/login`
+        : `http://192.168.1.27:5000/api/auth/signup`;
   
       const payload = isLogin
         ? { email, password }

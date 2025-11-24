@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import Constants from "expo-constants";
 
 
 export default function ForgotPassword() {
@@ -9,6 +10,7 @@ export default function ForgotPassword() {
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
+  const baseURL = Constants.expoConfig.extra.BASE_URL;
 
   const handleForgotPassword = async () => {
     if (!email) {
@@ -18,7 +20,7 @@ export default function ForgotPassword() {
     }
 
     try {
-      const res = await fetch("http://10.12.25.196:5000/api/auth/forgot-password", {
+      const res = await fetch(`http://192.168.1.27:5000/api/auth/forgot-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),

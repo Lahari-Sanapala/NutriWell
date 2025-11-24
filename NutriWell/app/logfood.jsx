@@ -61,7 +61,7 @@
 //       // console.log("user id and image are",userId);
 //       console.log("user if from log-food to backend",userId);
 
-//       const response = await fetch("http://10.12.25.196:5000/api/details/upload-image", {
+//       const response = await fetch(`http://192.168.1.27:5000/api/details/upload-image`, {
 //         method: "POST",
 //         headers: { "Content-Type": "application/json" },
 //         body: JSON.stringify({
@@ -454,6 +454,7 @@ import * as FileSystem from "expo-file-system";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Video } from "expo-av";
 import * as ImageManipulator from "expo-image-manipulator";
+import Constants from "expo-constants";
 
 const SnapMeal = () => {
   const [image, setImage] = useState(null);
@@ -465,7 +466,7 @@ const SnapMeal = () => {
   const maxNutrient = 100;
   const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(false); // Changed initial state to false for better flow
-
+  const baseURL = Constants.expoConfig.extra.BASE_URL;
   const router = useRouter();
 
   useEffect(() => {
@@ -519,7 +520,7 @@ const SnapMeal = () => {
          throw new Error("Compressed image is still too large (over ~12MB Base64 limit).");
       }
       
-      const response = await fetch("http://10.12.25.196:5000/api/details/upload-image", {
+      const response = await fetch(`http://192.168.1.27:5000/api/details/upload-image`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
