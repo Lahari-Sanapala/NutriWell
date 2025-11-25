@@ -126,7 +126,7 @@ def analyzeCalorie():
             "- Fats (g)\n"
             "Format the response exactly as:\n"
             "avg_calories, avg_carbohydrates, avg_proteins, avg_fats\n"
-            "Only return the numbers as comma-separated values.\n\n"
+            "Only return the numbers as comma-separated only values, must not give ranges.\n\n"
             f"Summary:\n{text}"
         )
 

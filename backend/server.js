@@ -33,8 +33,8 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // Set limit for JSON and URL-encoded data
-app.use(bodyParser.json({ limit: '10mb' })); // Adjust as necessary
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+app.use(bodyParser.json({ limit: '20mb' })); // Adjust as necessary
+app.use(bodyParser.urlencoded({ limit: '20mb', extended: true }));
 
 // For handling multipart form-data (used for file uploads), use `multer` or a similar middleware.
 
