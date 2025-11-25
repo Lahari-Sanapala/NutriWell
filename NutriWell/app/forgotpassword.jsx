@@ -18,7 +18,7 @@ export default function ForgotPassword() {
     }
 
     try {
-      const res = await fetch("http://10.12.25.196:5000/api/auth/forgot-password", {
+      const res = await fetch("http://192.168.137.1:5000/api/auth/forgot-password", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),

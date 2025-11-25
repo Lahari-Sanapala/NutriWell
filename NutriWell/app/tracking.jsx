@@ -195,7 +195,7 @@ export default function Tracking() {
       try {
         setLoading(true);
         console.log("sending user id to meals route from tracking",userId)
-        const response = await fetch(`http://10.12.25.196:5000/api/details/${userId}/meals`);
+        const response = await fetch(`http://192.168.137.1:5000/api/details/${userId}/meals`);
         
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);

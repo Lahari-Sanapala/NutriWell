@@ -101,28 +101,38 @@ export default function NutriWellHomeScreen() {
     const [userId, setUserId] = useState(null)
     
 
+    
     useEffect(() => {
-      const fetchData = async () => {
-        const storedId = await AsyncStorage.getItem("userId");
-        console.log('storedid from dashboard',storedId)
-        if (storedId) {
-          console.log("User ID from dashboard:", storedId);
-        setUserId(storedId);
-       
-        }
-      };
-      fetchData();
-      fetchDailyTotals();
-      fetchWeeklyTotals();
-     
-    }, []);
+  const fetchData = async () => {
+    const storedId = await AsyncStorage.getItem("userId");
+    console.log('storedid from dashboard', storedId);
+
+    if (storedId) {
+      console.log("User ID from dashboard:", storedId);
+      setUserId(storedId);
+    }
+  };
+
+  fetchData();
+}, []);
+
+useEffect(() => {
+  if (!userId) return;
+
+  console.log("User ID updated, fetching totals again...");
+
+  fetchDailyTotals();
+  fetchWeeklyTotals();
+}, [userId]);
+
+
    
     useEffect(() => {
       const fetchUserInfo = async () => {
         try {
          
           
-          const response = await fetch(`http://10.12.25.196:5000/api/auth/${userId}/basic-info`);
+          const response = await fetch(`http://192.168.137.1:5000/api/auth/${userId}/basic-info`);
           const data = await response.json();
           
           if (response.ok) {
@@ -146,7 +156,7 @@ export default function NutriWellHomeScreen() {
     // Fetch daily totals when component mounts
       const fetchDailyTotals = async () => {
         try {
-          const response = await fetch(`http://10.12.25.196:5000/api/details/${userId}/daily-totals`);
+          const response = await fetch(`http://192.168.137.1:5000/api/details/${userId}/daily-totals`);
           const data = await response.json();
           console.log("response from daily-totals",data);
           if (data.totals) {
@@ -158,7 +168,7 @@ export default function NutriWellHomeScreen() {
       };
       const fetchWeeklyTotals = async () => {
         try {
-          const response = await fetch(`http://10.12.25.196:5000/api/details/${userId}/weekly-totals`);
+          const response = await fetch(`http://192.168.137.1:5000/api/details/${userId}/weekly-totals`);
           const data = await response.json();
           console.log("response from weekly-totals",data);
           if (data.weeklyTotals) {

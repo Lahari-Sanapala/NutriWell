@@ -72,7 +72,7 @@ router.post("/upload-image", async (req, res) => {
 
    
     
-    const pythonResponse = await axios.post("http://10.12.25.196:8501/analyze", {
+    const pythonResponse = await axios.post("http://192.168.137.1:8501/analyze", {
       base64Image
   });
 
@@ -80,7 +80,7 @@ router.post("/upload-image", async (req, res) => {
   console.log("🍽 Summary:", summary);
 
   // Send summary to get calorie estimation
-  const pythonResponseCalorie = await axios.post("http://10.12.25.196:8501/analyzeCalorie", {
+  const pythonResponseCalorie = await axios.post("http://192.168.137.1:8501/analyzeCalorie", {
       summary
   });
 
@@ -112,11 +112,24 @@ router.post("/upload-image", async (req, res) => {
 });
 
 
+// function extractMealName(summary) {
+//   if (!summary) return 'Unnamed Meal';
+//   const match = summary.match(/Meal Analysis:\s*(.*)/i);
+//   return match ? match[1].trim() : 'Unnamed Meal';
+// }
+
+
 function extractMealName(summary) {
-  if (!summary) return 'Unnamed Meal';
-  const match = summary.match(/Meal Name:\s*(.*?)(\n|$)/i);
-  return match ? match[1].trim() : 'Unnamed Meal';
+  if (!summary) return "Unnamed Meal";
+
+  // Match the actual line where meal name appears
+  const match = summary.match(/Meal Analysis:\s*([^.\n]+)/i);
+
+  return match ? match[1].trim() : "Unnamed Meal";
 }
+
+
+
 
 router.get('/:userId/meals', async (req, res) => {
   try {

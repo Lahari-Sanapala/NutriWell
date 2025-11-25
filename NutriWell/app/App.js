@@ -15,7 +15,7 @@ export default function App() {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    fetch("10.12.25.196:6000/api/notifications/get")
+    fetch("192.168.137.1:6000/api/notifications/get")
       .then(res => res.json())
       .then(data => setNotifications(data))
       .catch(err => console.error('Error fetching notifications:', err));
