@@ -35,7 +35,16 @@
   },
   "2025-11-30": {
     "healthTips": [],
-    "dietTips": [],
-    "mentalHealthTips": []
+    "dietTips": [
+      "Reduce your intake of red and processed meats; choose lean proteins like chicken or fish.",
+      "Start your day with a high-protein breakfast to keep you full longer.",
+      "Plan your meals ahead to avoid last-minute unhealthy choices.",
+      "Incorporate legumes like beans and lentils into your diet for plant-based protein."
+    ],
+    "mentalHealthTips": [
+      "Limit screen time before bed to improve sleep quality.",
+      "Talk to someone you trust when you're feeling overwhelmed; sharing can lighten the load.",
+      "Engage in activities that bring you joy, whether it's a hobby or spending time with loved ones."
+    ]
   }
 }

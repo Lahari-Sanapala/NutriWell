@@ -84,6 +84,9 @@ export default function NutriWellHomeScreen() {
   console.log("in dashaboard")
   const router = useRouter();
   const [visible, setVisible] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState(null);
   const [dailyTotals, setDailyTotals] = useState({
     calories: 0,
     carbs: 0,
@@ -96,12 +99,34 @@ export default function NutriWellHomeScreen() {
     protein: 0,
     fat: 0
   });
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [userId, setUserId] = useState(null);
-  const baseURL = Constants.expoConfig.extra.BASE_URL;
 
+  const fetchDailyTotals = async (currentUserId) => {
+    if (!currentUserId) return;
+    try {
+      const response = await fetch(`http://localhost:5000/api/details/${currentUserId}/daily-totals`);
+      const data = await response.json();
+      console.log("response from daily-totals", data);
+      if (data.totals) {
+        setDailyTotals(data.totals);
+      }
+    } catch (error) {
+      console.error('Error fetching daily totals:', error);
+    }
+  };
 
+  const fetchWeeklyTotals = async (currentUserId) => {
+    if (!currentUserId) return;
+    try {
+      const response = await fetch(`http://localhost:5000/api/details/${currentUserId}/weekly-totals`);
+      const data = await response.json();
+      console.log("response from weekly-totals", data);
+      if (data.weeklyTotals) {
+        setWeeklyTotals(data.weeklyTotals);
+      }
+    } catch (error) {
+      console.error('Error fetching weekly totals:', error);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,18 +147,14 @@ export default function NutriWellHomeScreen() {
 
     console.log("User ID updated, fetching totals again...");
 
-    fetchDailyTotals();
-    fetchWeeklyTotals();
+    fetchDailyTotals(userId);
+    fetchWeeklyTotals(userId);
   }, [userId]);
-
-
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-
-
-        const response = await fetch(`http://192.168.1.3:5000/api/auth/${userId}/basic-info`);
+        const response = await fetch(`http://localhost:5000/api/auth/${userId}/basic-info`);
         const data = await response.json();
 
         if (response.ok) {
@@ -145,45 +166,15 @@ export default function NutriWellHomeScreen() {
         }
       } catch (error) {
         console.error('Error:', error);
-
       }
     };
 
-    fetchUserInfo();
-    fetchDailyTotals();
-    fetchWeeklyTotals();
+    if (userId) {
+      fetchUserInfo();
+    }
   }, [userId]);
 
-  // Fetch daily totals when component mounts
-  const fetchDailyTotals = async () => {
-    try {
-      const response = await fetch(`http://192.168.1.3:5000/api/details/${userId}/daily-totals`);
-      const data = await response.json();
-      console.log("response from daily-totals", data);
-      if (data.totals) {
-        setDailyTotals(data.totals);
-      }
-    } catch (error) {
-      console.error('Error fetching daily totals:', error);
-    }
-  };
-  const fetchWeeklyTotals = async () => {
-    try {
-      const response = await fetch(`http://192.168.1.3:5000/api/details/${userId}/weekly-totals`);
-      const data = await response.json();
-      console.log("response from weekly-totals", data);
-      if (data.weeklyTotals) {
-        setWeeklyTotals(data.weeklyTotals);
-      }
-    } catch (error) {
-      console.error('Error fetching weekly totals:', error);
-    }
-  };
 
-
-
-
-  // Calculate percentages for pie chart
   const carbs = Number(dailyTotals.carbs) || 0;
   const protein = Number(dailyTotals.protein) || 0;
   const fat = Number(dailyTotals.fat) || 0;

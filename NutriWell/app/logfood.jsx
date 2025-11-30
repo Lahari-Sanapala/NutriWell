@@ -70,50 +70,53 @@ const SnapMeal = () => {
       return uri;
     }
   };
-
   // ---------------------------------------------
 
 
   const uploadImageToBackend = async (uri) => {
     try {
-      const base64 = await FileSystem.readAsStringAsync(uri, {
-        encoding: FileSystem.EncodingType.Base64,
-      });
+      let base64;
+      if (Platform.OS === 'web') {
+        // Web: Fetch blob and convert to base64
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        base64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64String = reader.result;
+            // Remove data URL prefix (e.g., "data:image/jpeg;base64,")
+            resolve(base64String.split(',')[1]);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        });
+      } else {
+        // Mobile: Use FileSystem
+        base64 = await FileSystem.readAsStringAsync(uri, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+      }
 
       console.log("BASE64 LENGTH (after compression):", base64.length);
       console.log("user id from log-food to backend", userId);
+
+      const sanitizedUserId = userId ? userId.replace(/['"]+/g, '').trim() : null;
+      console.log("Sanitized userId:", sanitizedUserId);
 
       // Check if image is still too large after compression (optional safeguard)
       if (base64.length > 16 * 1024 * 1024 * 0.75) { // Roughly 12MB limit for the Base64 string payload
         throw new Error("Compressed image is still too large (over ~12MB Base64 limit).");
       }
 
-      const response = await fetch(`http://192.168.1.3:5000/api/details/upload-image`, {
+      const response = await fetch(`http://localhost:5000/api/details/upload-image`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userId: userId,
+          userId: sanitizedUserId,
           base64Image: base64,
         }),
       });
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Upload failed");
-
-      setSummary(data.food.summary || "No summary returned");
-
-      // Safely parse the calorie response
-      const calorieInfo = data.food.calorieInfo || "0, 0, 0, 0";
-      const parts = calorieInfo.split(",").map(x => safeParseInt(x.trim()));
-
-      // Extract nutrients safely
-      const [totalCalories, carbsVal, proteinVal, fatVal] = parts.length === 4
-        ? parts
-        : [0, 0, 0, 0];
-
-      // Set nutrient states
-      setCarbs(carbsVal);
-      setProtein(proteinVal);
       setFat(fatVal);
 
       console.log("Frontend macro nutrients:", carbsVal, proteinVal, fatVal);

@@ -57,8 +57,11 @@ router.post("/upload-image", async (req, res) => {
 
   try {
     const { userId, base64Image } = req.body;
+    console.log("Received userId in backend:", userId);
+    console.log("Is valid ObjectId?", mongoose.Types.ObjectId.isValid(userId));
+
     if (!mongoose.Types.ObjectId.isValid(userId)) {
-      return res.status(400).json({ error: "Invalid user ID format" });
+      return res.status(400).json({ error: `Invalid user ID format. Received: ${userId}` });
     }
 
     const userIdd = new mongoose.Types.ObjectId(userId);
@@ -75,7 +78,7 @@ router.post("/upload-image", async (req, res) => {
 
    
     
-    const pythonResponse = await axios.post("http://192.168.1.3:8501/analyze", {
+    const pythonResponse = await axios.post("http://localhost:8501/analyze", {
       base64Image
   });
 
@@ -83,7 +86,7 @@ router.post("/upload-image", async (req, res) => {
   console.log("🍽 Summary:", summary);
 
   // Send summary to get calorie estimation
-  const pythonResponseCalorie = await axios.post("http://192.168.1.3:8501/analyzeCalorie", {
+  const pythonResponseCalorie = await axios.post("http://localhost:8501/analyzeCalorie", {
       summary
   });
 

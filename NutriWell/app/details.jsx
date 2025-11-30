@@ -34,6 +34,18 @@ export default function Details() {
   const [userId, setUserId] = useState(null);
   const baseURL = Constants.expoConfig.extra.BASE_URL;
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const storedId = await AsyncStorage.getItem("userId");
+      console.log('storedid from details', storedId)
+      if (storedId) {
+        console.log("User ID from details:", storedId);
+        setUserId(storedId);
+      }
+    };
+    fetchData();
+  }, []);
+
   const validatePage1 = () => {
     const newErrors = {};
     if (!name.trim()) newErrors.name = true;
@@ -60,50 +72,21 @@ export default function Details() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const nextPage = () => {
-    if (page === 1 && validatePage1()) setPage(2);
-    else if (page === 2 && validatePage2()) setPage(3);
-  };
-
   const prevPage = () => {
     if (page > 1) setPage(page - 1);
   };
-
-  // const submit = () => {
-  //   if (validatePage3()) {
-  //     // Alert.alert('Submitted', 'Your details are locked successsfully!');
-  //     Alert.alert('Chomp Chomp!', 'Data digested. You’re on the wellness express 🥑🚂');
-
-  //   }
-  // };
-  useEffect(() => {
-    const fetchData = async () => {
-      const storedId = await AsyncStorage.getItem("userId");
-      console.log('storedid from details', storedId)
-      if (storedId) {
-        console.log("User ID from details:", storedId);
-        setUserId(storedId);
-        fetchDailyTotals(storedId);
-        fetchWeeklyTotals(storedId);
-      }
-    };
-    fetchData();
-  }, []);
 
   const submit = async () => {
     if (!validatePage3()) return;
 
     try {
-      //const userId = await AsyncStorage.getItem('userId');
-      // Retrieve the userId from localStorage
-
       if (!userId) {
         Alert.alert("Error", "User not logged in");
         return;
       }
 
       const userData = {
-        userId,  // Use the dynamic userId from localStorage
+        userId,
         name,
         gender,
         age,
@@ -114,7 +97,7 @@ export default function Details() {
         healthIssues: healthIssuesList,
       };
 
-      const response = await fetch("http://192.168.1.3:5000/api/details/submit", {
+      const response = await fetch("http://localhost:5000/api/details/submit", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -123,7 +106,6 @@ export default function Details() {
       const result = await response.json();
 
       if (response.ok) {
-        //Alert.alert("Success", result.message);
         Alert.alert('Chomp Chomp!', 'Data digested. You’re on the wellness express 🥑🚂');
       } else {
         Alert.alert("Error", result.message || "Something went wrong");

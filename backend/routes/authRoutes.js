@@ -15,25 +15,41 @@ const baseURL = process.env.BASE_URL;
 
 // Sign up
 router.post("/signup", async (req, res) => {
+  console.log("🔹 [DEBUG] Signup request received:", req.body);
   const { fullName, email, password } = req.body;
 
   try {
+    console.log("🔹 [DEBUG] Checking if user exists...");
     const existing = await User.findOne({ email });
-    if (existing) return res.status(400).json({ message: "Email already registered" });
+    if (existing) {
+      console.log("❌ [DEBUG] Email already registered:", email);
+      return res.status(400).json({ message: "Email already registered" });
+    }
 
+    console.log("🔹 [DEBUG] Hashing password...");
     const hashed = await bcrypt.hash(password, 10);
-    const newUser = new User({ fullName, email, password: hashed });
-    await newUser.save();
 
+    console.log("🔹 [DEBUG] Creating new User document...");
+    const newUser = new User({ fullName, email, password: hashed });
+
+    console.log("🔹 [DEBUG] Saving User to DB...");
+    await newUser.save();
+    console.log("✅ [DEBUG] User saved successfully. ID:", newUser._id);
+
+    console.log("🔹 [DEBUG] Creating UserDetails document...");
     const newDetails = new UserDetails({
       _id: newUser._id,   // 💡 Assign same _id
       userId: newUser._id, // Optional, but if you’re using it in code
       // You can also initialize default fields here
     });
+
+    console.log("🔹 [DEBUG] Saving UserDetails to DB...");
     await newDetails.save();
+    console.log("✅ [DEBUG] UserDetails saved successfully.");
 
     res.status(201).json({ message: "Signup successful", user: newUser });
   } catch (err) {
+    console.error("❌ [DEBUG] Signup Error:", err);
     res.status(500).json({ message: "Signup failed", error: err.message });
   }
 });
@@ -51,7 +67,7 @@ router.post("/login", async (req, res) => {
 
     const userdetails = await UserDetails.findOne({ userId: user._id });
     //console.log("all user details", userdetails);
-    
+
     if (!userdetails) {
       return res.status(404).json({ message: "User details not found" });
     }
@@ -82,7 +98,7 @@ router.get('/:userId/basic-info', async (req, res) => {
 
     // Find the user in both collections
     const user = await User.findOne({ _id: req.params.userId });
-    
+
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }

@@ -28,5 +28,65 @@
     "type": "General Reminder",
     "message": "Don’t forget to take care of your health today!",
     "time": "2025-11-30T04:40:00.382Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Reduce your intake of red and processed meats; choose lean proteins like chicken or fish.",
+    "time": "2025-11-30T04:50:00.014Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Limit screen time before bed to improve sleep quality.",
+    "time": "2025-11-30T05:00:00.020Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Talk to someone you trust when you're feeling overwhelmed; sharing can lighten the load.",
+    "time": "2025-11-30T05:10:00.013Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-11-30T05:20:00.391Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Start your day with a high-protein breakfast to keep you full longer.",
+    "time": "2025-11-30T05:30:00.016Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Plan your meals ahead to avoid last-minute unhealthy choices.",
+    "time": "2025-11-30T05:40:00.017Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Engage in activities that bring you joy, whether it's a hobby or spending time with loved ones.",
+    "time": "2025-11-30T05:40:00.017Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-11-30T05:50:00.345Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-11-30T06:00:00.027Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Incorporate legumes like beans and lentils into your diet for plant-based protein.",
+    "time": "2025-11-30T06:00:00.027Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-11-30T06:10:00.012Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-11-30T06:20:00.021Z"
   }
 ]

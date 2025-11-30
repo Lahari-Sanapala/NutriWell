@@ -114,29 +114,6 @@ def analyze():
 
 
 @app.route('/analyzeCalorie', methods=['POST'])
-def analyzeCalorie():
-    try:
-        print("🔹 [INFO] Received /analyzeCalorie request")
-        data = request.get_json()
-        text = data.get('summary')
-
-        prompt = (
-            "You are a nutrition assistant.\n"
-            "Given a food summary with nutrient ranges, calculate the average values for:\n"
-            "- Calories\n"
-            "- Carbohydrates (g)\n"
-            "- Proteins (g)\n"
-            "- Fats (g)\n"
-            "Format the response exactly as:\n"
-            "avg_calories, avg_carbohydrates, avg_proteins, avg_fats\n"
-            "Only return the numbers as comma-separated only values, must not give ranges.\n\n"
-            f"Summary:\n{text}"
-        )
-
-        payload = {
-            "model": "llama-3.1-8b-instant",
-            "messages": [
-                {"role": "system", "content": "You are a helpful nutrition assistant."},
                 {"role": "user", "content": prompt}
             ],
             "temperature": 0.2,
