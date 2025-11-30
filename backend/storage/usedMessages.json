@@ -1,6 +1,9 @@
 {
   "2025-11-29": {
-    "healthTips": [],
+    "healthTips": [
+      "Eat slowly and mindfully.",
+      "Taking short breaks during long tasks can improve focus and productivity."
+    ],
     "dietTips": [
       "Limit sugary snacks and opt for nuts or yogurt as healthier alternatives.",
       "Reduce your intake of red and processed meats; choose lean proteins like chicken or fish.",
@@ -29,5 +32,10 @@
       "Learn to say no to commitments that cause unnecessary stress.",
       "Talk to someone you trust when you're feeling overwhelmed; sharing can lighten the load."
     ]
+  },
+  "2025-11-30": {
+    "healthTips": [],
+    "dietTips": [],
+    "mentalHealthTips": []
   }
 }

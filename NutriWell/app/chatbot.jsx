@@ -24,6 +24,7 @@ export default function Chatbot() {
   const router = useRouter();
   const [userId, setUserId] = useState(null);
   const baseURL = Constants.expoConfig.extra.BASE_URL;
+
   useEffect(() => {
     const fetchData = async () => {
       const storedId = await AsyncStorage.getItem("userId");
@@ -31,8 +32,6 @@ export default function Chatbot() {
       if (storedId) {
         console.log("User ID from chatbot:", storedId);
         setUserId(storedId);
-        fetchDailyTotals(storedId);
-        fetchWeeklyTotals(storedId);
       }
     };
     fetchData();
@@ -54,13 +53,13 @@ export default function Chatbot() {
     try {
       // 1. Fetch today's meals and nutrition from Node.js backend
       console.log("user id before backend api", userId);
-      const response = await fetch(`http://192.168.1.3:5000/api/details/${userId}/getTodaysMealsAndNutrition`);
+      const response = await fetch(`http://localhost:5000/api/details/${userId}/getTodaysMealsAndNutrition`);
       const mealData = await response.json(); // ✅ Store it in a variable
 
       console.log("meal data from backend", mealData);
 
       // 2. Send it to the Flask chatbot server
-      const chatbotResponse = await axios.post("http://192.168.1.3:5001/chatbot", {
+      const chatbotResponse = await axios.post("http://localhost:5001/chatbot", {
         userData: mealData,
         query: trimmedQuery,
       });
