@@ -281,8 +281,8 @@ export default function AuthScreen() {
 
     try {
       const endpoint = isLogin
-        ? "http://localhost:5000/api/auth/login"
-        : "http://localhost:5000/api/auth/signup";
+        ? "http://192.168.137.154:5000/api/auth/login"
+        : "http://192.168.137.154:5000/api/auth/signup";
 
       const payload = isLogin
         ? { email, password }

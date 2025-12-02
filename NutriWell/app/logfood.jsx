@@ -108,7 +108,7 @@ const SnapMeal = () => {
         throw new Error("Compressed image is still too large (over ~12MB Base64 limit).");
       }
 
-      const response = await fetch(`http://localhost:5000/api/details/upload-image`, {
+      const response = await fetch(`http://192.168.137.154:5000/api/details/upload-image`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -117,13 +117,44 @@ const SnapMeal = () => {
         }),
       });
 
-      setFat(fatVal);
+      // After your POST request:
+      const data = await response.json(); // Parse backend response
 
-      console.log("Frontend macro nutrients:", carbsVal, proteinVal, fatVal);
+      const CalorieResponse = data.food?.CalorieResponse || "";
+      const parts = CalorieResponse.split(',').map(x => x?.trim());
 
-      // 🔥 Correct placement — compute AFTER the values exist
-      const maxVal = Math.max(carbsVal, proteinVal, fatVal, 1);
+      // Safe numeric parsing with fallback
+      const cal = parseFloat(parts[0]) || 0;
+      const carb = parseFloat(parts[1]) || 0;
+      const prot = parseFloat(parts[2]) || 0;
+      const f = parseFloat(parts[3]) || 0;
+
+      // Update states
+      setCarbs(carb);
+      setProtein(prot);
+      setFat(f);
+
+      // Update max nutrient
+      const maxVal = Math.max(carb, prot, f, 1);
       setMaxNutrient(maxVal);
+
+
+
+
+      console.log("Frontend macro nutrients:", carb, prot, f);
+
+      const summaryFromBackend = data.food?.summary || "No summary returned";
+      setSummary(summaryFromBackend);
+
+
+
+      // setFat(fatVal);
+
+      // console.log("Frontend macro nutrients:", carbsVal, proteinVal, fatVal);
+
+      // // 🔥 Correct placement — compute AFTER the values exist
+      // const maxVal = Math.max(carbsVal, proteinVal, fatVal, 1);
+      // setMaxNutrient(maxVal);
 
 
     } catch (err) {

@@ -103,7 +103,7 @@ export default function NutriWellHomeScreen() {
   const fetchDailyTotals = async (currentUserId) => {
     if (!currentUserId) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/details/${currentUserId}/daily-totals`);
+      const response = await fetch(`http://192.168.137.154:5000/api/details/${currentUserId}/daily-totals`);
       const data = await response.json();
       console.log("response from daily-totals", data);
       if (data.totals) {
@@ -117,7 +117,7 @@ export default function NutriWellHomeScreen() {
   const fetchWeeklyTotals = async (currentUserId) => {
     if (!currentUserId) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/details/${currentUserId}/weekly-totals`);
+      const response = await fetch(`http://192.168.137.154:5000/api/details/${currentUserId}/weekly-totals`);
       const data = await response.json();
       console.log("response from weekly-totals", data);
       if (data.weeklyTotals) {
@@ -154,7 +154,7 @@ export default function NutriWellHomeScreen() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/auth/${userId}/basic-info`);
+        const response = await fetch(`http://192.168.137.154:5000/api/auth/${userId}/basic-info`);
         const data = await response.json();
 
         if (response.ok) {

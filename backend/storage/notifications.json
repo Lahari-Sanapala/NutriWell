@@ -88,5 +88,140 @@
     "type": "meal Reminder",
     "message": "Time for your meal! Don't miss it.",
     "time": "2025-11-30T06:20:00.021Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Plan your meals ahead to avoid last-minute unhealthy choices.",
+    "time": "2025-12-02T06:25:50.506Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-02T06:30:00.008Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Drinking water before meals can help with digestion and prevent overeating.",
+    "time": "2025-12-02T06:30:00.008Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Read nutrition labels to make informed food choices.",
+    "time": "2025-12-02T06:30:00.008Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Taking short breaks during long tasks can improve focus and productivity.",
+    "time": "2025-12-02T06:40:00.013Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Choose whole fruits over fruit juices to benefit from fiber.",
+    "time": "2025-12-02T06:40:00.013Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Practice good posture to prevent back and neck pain.",
+    "time": "2025-12-02T06:42:08.523Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Take time each day to relax and unwind; it's essential for mental well-being.",
+    "time": "2025-12-02T06:42:08.523Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Avoid sugar after 6 PM.",
+    "time": "2025-12-02T06:50:00.021Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Keep a gratitude journal to focus on the positive aspects of your life.",
+    "time": "2025-12-02T06:50:00.021Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Aim for at least 30 minutes of moderate physical activity most days of the week.",
+    "time": "2025-12-02T07:00:42.396Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Limit screen time before bed to improve sleep quality.",
+    "time": "2025-12-02T07:00:42.396Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Include a variety of colorful fruits and vegetables in your diet to ensure you're getting a range of nutrients.",
+    "time": "2025-12-02T07:10:00.018Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Avoid skipping breakfast; it kick-starts your metabolism and provides energy for the day.",
+    "time": "2025-12-02T07:20:00.011Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Reduce your intake of red and processed meats; choose lean proteins like chicken or fish.",
+    "time": "2025-12-02T09:47:49.167Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Start your day with a high-protein breakfast to keep you full longer.",
+    "time": "2025-12-02T09:50:00.021Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-02T10:00:00.314Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Incorporate legumes like beans and lentils into your diet for plant-based protein.",
+    "time": "2025-12-02T10:10:00.022Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Try cutting down on carbs for better energy.",
+    "time": "2025-12-02T10:20:00.015Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Eat slowly and mindfully.",
+    "time": "2025-12-02T10:30:00.006Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Lemon water is good for weight loss.",
+    "time": "2025-12-02T10:38:54.932Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Ensure you're getting enough calcium and vitamin D to support bone health.",
+    "time": "2025-12-02T10:40:00.015Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Incorporate whole grains like oats and brown rice into your meals for added fiber.",
+    "time": "2025-12-02T10:50:00.016Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Set realistic goals and break them into manageable steps.",
+    "time": "2025-12-02T10:50:00.016Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Limit your intake of processed foods to reduce the risk of chronic diseases.",
+    "time": "2025-12-02T11:00:00.014Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Start your day with a glass of warm water.",
+    "time": "2025-12-02T11:10:00.006Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Eat smaller portions to help manage your weight.",
+    "time": "2025-12-02T12:10:00.020Z"
   }
 ]
