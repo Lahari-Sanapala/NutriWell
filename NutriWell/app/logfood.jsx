@@ -21,6 +21,7 @@ import { Video } from "expo-av";
 import * as ImageManipulator from "expo-image-manipulator";
 import Constants from "expo-constants";
 
+
 const SnapMeal = () => {
   const [image, setImage] = useState(null);
   const [submitted, setSubmitted] = useState(false);
@@ -108,7 +109,7 @@ const SnapMeal = () => {
         throw new Error("Compressed image is still too large (over ~12MB Base64 limit).");
       }
 
-      const userResponse = await fetch(`http://192.168.146.176:5000/api/details/${userId}/edit-details`);
+      const userResponse = await fetch(`http://10.12.25.176:5000/api/details/${userId}/edit-details`);
       const userDetails = await userResponse.json();
 
       const {
@@ -123,7 +124,7 @@ const SnapMeal = () => {
       } = userDetails;
 
 
-      const response = await fetch(`http://192.168.146.176:5000/api/details/upload-image`, {
+      const response = await fetch(`http://10.12.25.176:5000/api/details/upload-image`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -264,6 +265,37 @@ const SnapMeal = () => {
     router.push("/dashboard");
   };
 
+  function parseSummary(summary) {
+    if (!summary) return null;
+
+    const lines = summary.split('\n');
+
+    return lines.map((line, index) => {
+      // Convert * text → • text
+      let formattedLine = line.replace(/^\s*\*\s+/g, "• ");
+
+      // Remove orphan single * characters
+      formattedLine = formattedLine.replace(/(?<!\*)\*(?!\*)/g, "");
+
+      // Detect bold **text**
+      const parts = formattedLine.split(/(\*\*[^*]+\*\*)/g);
+
+      return (
+        <Text key={index} style={{ marginBottom: 4 }}>
+          {parts.map((part, i) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+              return (
+                <Text key={i} style={{ fontWeight: "bold" }}>
+                  {part.slice(2, -2)}
+                </Text>
+              );
+            }
+            return part;
+          })}
+        </Text>
+      );
+    });
+  }
 
 
   return (
@@ -384,8 +416,12 @@ const SnapMeal = () => {
 
                     <View style={styles.summarySection}>
                       <Text style={styles.summaryHeading}>Summary</Text>
-                      <Text style={styles.summaryText}>{summary}</Text>
+
+                      <View style={styles.summaryText}>
+                        {parseSummary(summary)}
+                      </View>
                     </View>
+
                   </View>
                 </ScrollView>
               )}

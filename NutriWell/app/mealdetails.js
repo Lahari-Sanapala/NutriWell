@@ -116,6 +116,40 @@ export default function MealDetail() {
     return Math.round((g / total) * 100);
   };
 
+  function parseSummary(summary) {
+    if (!summary) return null;
+
+    const lines = summary.split('\n');
+
+    return lines.map((line, index) => {
+      // Convert * text → • text
+      let formattedLine = line.replace(/^\s*\*\s+/g, "• ");
+
+      // Remove orphan single * characters
+      formattedLine = formattedLine.replace(/(?<!\*)\*(?!\*)/g, "");
+
+      // Detect bold **text**
+      const parts = formattedLine.split(/(\*\*[^*]+\*\*)/g);
+
+      return (
+        <Text key={index} style={{ marginBottom: 4 }}>
+          {parts.map((part, i) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+              return (
+                <Text key={i} style={{ fontWeight: "bold" }}>
+                  {part.slice(2, -2)}
+                </Text>
+              );
+            }
+            return part;
+          })}
+        </Text>
+      );
+    });
+  }
+
+
+
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
@@ -172,8 +206,14 @@ export default function MealDetail() {
               </View>
             </View>
 
-            <Text style={styles.name}>Summary</Text>
-            <Text style={styles.calories}>{parsedMeal.summary}</Text>
+            <View style={styles.summarySection}>
+              <Text style={styles.name}>Summary</Text>
+              <View style={styles.calories}>
+                {parseSummary(parsedMeal.summary)}
+              </View>
+            </View>
+
+
           </View>
         </ScrollView>
       </SafeAreaView>
