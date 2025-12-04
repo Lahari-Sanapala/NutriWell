@@ -71,13 +71,43 @@
       "Start your day with a high-protein breakfast to keep you full longer.",
       "Incorporate legumes like beans and lentils into your diet for plant-based protein.",
       "Try cutting down on carbs for better energy.",
-      "Eat smaller portions to help manage your weight."
+      "Eat smaller portions to help manage your weight.",
+      "Limit sugary snacks and opt for nuts or yogurt as healthier alternatives.",
+      "Stay hydrated by drinking water throughout the day.",
+      "Use herbs and spices to flavor your food instead of salt.",
+      "Add more vegetables to your meals for better digestion."
     ],
     "mentalHealthTips": [
       "Take time each day to relax and unwind; it's essential for mental well-being.",
       "Keep a gratitude journal to focus on the positive aspects of your life.",
       "Limit screen time before bed to improve sleep quality.",
-      "Set realistic goals and break them into manageable steps."
+      "Set realistic goals and break them into manageable steps.",
+      "Spend time outdoors to boost your mood and vitamin D levels."
+    ]
+  },
+  "2025-12-04": {
+    "healthTips": [
+      "Avoid skipping breakfast; it kick-starts your metabolism and provides energy for the day.",
+      "Taking short breaks during long tasks can improve focus and productivity.",
+      "Limit your intake of processed foods to reduce the risk of chronic diseases."
+    ],
+    "dietTips": [
+      "Use herbs and spices to flavor your food instead of salt.",
+      "Read nutrition labels to make informed food choices.",
+      "Start your day with a high-protein breakfast to keep you full longer.",
+      "Add more vegetables to your meals for better digestion.",
+      "Try cutting down on carbs for better energy.",
+      "Limit sugary snacks and opt for nuts or yogurt as healthier alternatives.",
+      "Stay hydrated by drinking water throughout the day."
+    ],
+    "mentalHealthTips": [
+      "Talk to someone you trust when you're feeling overwhelmed; sharing can lighten the load.",
+      "Practice mindfulness or meditation to reduce stress and improve focus.",
+      "Take time each day to relax and unwind; it's essential for mental well-being.",
+      "Remember to take breaks during work to avoid burnout.",
+      "Learn to say no to commitments that cause unnecessary stress.",
+      "Engage in activities that bring you joy, whether it's a hobby or spending time with loved ones.",
+      "Limit screen time before bed to improve sleep quality."
     ]
   }
 }

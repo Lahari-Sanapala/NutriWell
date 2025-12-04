@@ -1,16 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const { getAllNotifications } = require('../storage/store');
-
-// // GET /notifications
-// router.get('/', (req, res) => {
-//   const notifications = getAllNotifications();
-//   res.json(notifications);
-// });
-
-// module.exports = router;
-
-
 // ❌ This part is backend code — remove from frontend!
 const express = require('express');
 const router = express.Router();

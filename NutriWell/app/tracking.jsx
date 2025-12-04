@@ -1,147 +1,3 @@
-// // import React from 'react';
-// // import { View, ScrollView, StyleSheet, Text } from 'react-native';
-// // import MealCard from './mealcard';
-// // import { useRouter } from 'expo-router';
-// // import imgg from '../assets/images/logo.jpg';
-
-// // const meals = [
-// //   {
-// //     id: 1,
-// //     name: 'Avocado Toast with Eggs',
-// //     time: '8 min',
-// //     calories: 250,
-// //     image: imgg,
-// //     macros: { carbs: 20, protein: 10, fat: 15 }
-// //   },
-// //   {
-// //     id: 2,
-// //     name: 'Pesto Chicken Penne Pasta',
-// //     time: '25 min',
-// //     calories: 600,
-// //     image: imgg,
-// //     macros: { carbs: 60, protein: 35, fat: 25 }
-// //   },
-// //   {
-// //     id: 3,
-// //     name: 'Fried Chicken Bowl',
-// //     time: '40 min',
-// //     calories: 750,
-// //     image: imgg,
-// //     macros: { carbs: 70, protein: 35, fat: 35 }
-// //   }
-// // ];
-
-// // export default function Tracking() {
-// //   const router = useRouter();
-
-// //   return (
-// //     <ScrollView style={styles.container}>
-// //       <Text style={styles.heading}>Meal Plan</Text>
-// //       {meals.map(meal => (
-// //         <MealCard key={meal.id} meal={meal} router={router} />
-// //       ))}
-// //     </ScrollView>
-// //   );
-// // }
-
-// // const styles = StyleSheet.create({
-// //   container: {
-// //     padding: 10,
-// //     backgroundColor: '#e6d6f5'
-// //   },
-// //   heading: {
-// //     fontSize: 26,
-// //     fontWeight: 'bold',
-// //     textAlign: 'center',
-// //     marginVertical: 16,
-// //     color: '#4a0072'
-// //   }
-// // });
-
-
-// import React from 'react';
-// import { View, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
-// import MealCard from './mealcard';
-// import { useRouter } from 'expo-router';
-// import { Ionicons } from '@expo/vector-icons'; // icon for back button
-// import imgg from '../assets/images/logo.jpg';
-
-// const meals = [
-//   {
-//     id: 1,
-//     name: 'Avocado Toast with Eggs',
-//     time: '8 min',
-//     calories: 250,
-//     image: imgg,
-//     macros: { carbs: 20, protein: 10, fat: 15 }
-//   },
-//   {
-//     id: 2,
-//     name: 'Pesto Chicken Penne Pasta',
-//     time: '25 min',
-//     calories: 600,
-//     image: imgg,
-//     macros: { carbs: 60, protein: 35, fat: 25 }
-//   },
-//   {
-//     id: 3,
-//     name: 'Fried Chicken Bowl',
-//     time: '40 min',
-//     calories: 750,
-//     image: imgg,
-//     macros: { carbs: 70, protein: 35, fat: 35 }
-//   }
-// ];
-
-// export default function Tracking() {
-//   const router = useRouter();
-
-//   return (
-//     <ScrollView style={styles.container}>
-//       {/* Back Button */}
-//       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-//         <Ionicons name="arrow-back" size={24} color="#4a0072" />
-//         <Text style={styles.backText}>Back</Text>
-//       </TouchableOpacity>
-
-//       <Text style={styles.heading}>Meal Plan</Text>
-//       {meals.map(meal => (
-//         <MealCard key={meal.id} meal={meal} router={router} />
-//       ))}
-//     </ScrollView>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     padding: 10,
-//     backgroundColor: '#e6d6f5',
-//     flex: 1,
-//   },
-//   heading: {
-//     fontSize: 26,
-//     fontWeight: 'bold',
-//     textAlign: 'center',
-//     marginVertical: 16,
-//     color: '#4a0072'
-//   },
-//   backButton: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     marginBottom: 10
-//   },
-//   backText: {
-//     marginLeft: 6,
-//     fontSize: 16,
-//     color: '#4a0072',
-//     fontWeight: 'bold'
-//   }
-// });
-
-
-
-
-
 import React, { useState, useEffect, useImperativeHandle } from 'react';
 import { View, ScrollView, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import MealCard from './mealcard';
@@ -174,29 +30,12 @@ export default function Tracking() {
   }, []);
 
 
-  // useEffect(() => {
-  //   fetchUserId();
-  //   const fetchMeals = async () => {
-  //     try {
-  //       // Replace 'userId' with actual user ID from your auth system
-  //       const response = await axios.get(`http://192.168.1.27:5000/api/details/${userId}/meals`);
-  //       setMeals(response.data);
-  //     } catch (error) {
-  //       console.error('Error fetching meals:', error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchMeals();
-  // }, []);
-
   useEffect(() => {
     const fetchMeals = async () => {
       try {
         setLoading(true);
         console.log("sending user id to meals route from tracking", userId)
-        const response = await fetch(`http://192.168.137.154:5000/api/details/${userId}/meals`);
+        const response = await fetch(`http://192.168.146.176:5000/api/details/${userId}/meals`);
 
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
@@ -207,8 +46,6 @@ export default function Tracking() {
         setMeals(data);
       } catch (error) {
         console.error('Fetch error:', error);
-        // Optional: Set error state
-        // setError(error.message);
       } finally {
         setLoading(false);
       }

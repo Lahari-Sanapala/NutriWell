@@ -223,5 +223,210 @@
     "type": "Diet Tip",
     "message": "Eat smaller portions to help manage your weight.",
     "time": "2025-12-02T12:10:00.020Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-02T12:20:00.716Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Limit sugary snacks and opt for nuts or yogurt as healthier alternatives.",
+    "time": "2025-12-02T12:30:00.027Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-02T12:40:00.721Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-02T12:50:00.369Z"
+  },
+  {
+    "type": "dinner Reminder",
+    "message": "Time for your dinner! Don't miss it.",
+    "time": "2025-12-02T13:00:00.022Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Stay hydrated by drinking water throughout the day.",
+    "time": "2025-12-02T13:00:00.022Z"
+  },
+  {
+    "type": "dinner Reminder",
+    "message": "Time for your dinner! Don't miss it.",
+    "time": "2025-12-02T13:10:00.014Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Use herbs and spices to flavor your food instead of salt.",
+    "time": "2025-12-02T13:10:00.014Z"
+  },
+  {
+    "type": "dinner Reminder",
+    "message": "Time for your dinner! Don't miss it.",
+    "time": "2025-12-02T13:20:00.024Z"
+  },
+  {
+    "type": "dinner Reminder",
+    "message": "Time for your dinner! Don't miss it.",
+    "time": "2025-12-02T13:30:00.013Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Spend time outdoors to boost your mood and vitamin D levels.",
+    "time": "2025-12-02T13:30:00.013Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Add more vegetables to your meals for better digestion.",
+    "time": "2025-12-02T13:40:00.021Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-02T13:50:00.290Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-02T14:00:00.687Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Use herbs and spices to flavor your food instead of salt.",
+    "time": "2025-12-04T04:40:00.020Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Talk to someone you trust when you're feeling overwhelmed; sharing can lighten the load.",
+    "time": "2025-12-04T04:40:00.020Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Read nutrition labels to make informed food choices.",
+    "time": "2025-12-04T04:46:04.700Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Practice mindfulness or meditation to reduce stress and improve focus.",
+    "time": "2025-12-04T04:46:04.700Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-04T04:50:00.236Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Start your day with a high-protein breakfast to keep you full longer.",
+    "time": "2025-12-04T05:00:00.020Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Add more vegetables to your meals for better digestion.",
+    "time": "2025-12-04T05:10:00.010Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Take time each day to relax and unwind; it's essential for mental well-being.",
+    "time": "2025-12-04T05:10:00.010Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-04T05:20:00.890Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Remember to take breaks during work to avoid burnout.",
+    "time": "2025-12-04T05:27:33.026Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-04T05:30:00.197Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Try cutting down on carbs for better energy.",
+    "time": "2025-12-04T05:40:00.015Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-04T05:50:00.192Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-04T06:00:00.015Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Limit sugary snacks and opt for nuts or yogurt as healthier alternatives.",
+    "time": "2025-12-04T06:00:00.015Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-04T06:05:07.476Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-04T06:10:00.022Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Learn to say no to commitments that cause unnecessary stress.",
+    "time": "2025-12-04T06:10:00.022Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-04T06:20:00.014Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Stay hydrated by drinking water throughout the day.",
+    "time": "2025-12-04T06:20:00.014Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-04T06:21:35.296Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-04T06:30:00.009Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Avoid skipping breakfast; it kick-starts your metabolism and provides energy for the day.",
+    "time": "2025-12-04T06:30:00.009Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Taking short breaks during long tasks can improve focus and productivity.",
+    "time": "2025-12-04T06:33:43.478Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Engage in activities that bring you joy, whether it's a hobby or spending time with loved ones.",
+    "time": "2025-12-04T06:33:43.478Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Limit your intake of processed foods to reduce the risk of chronic diseases.",
+    "time": "2025-12-04T06:40:00.012Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Limit screen time before bed to improve sleep quality.",
+    "time": "2025-12-04T06:40:00.012Z"
   }
 ]
