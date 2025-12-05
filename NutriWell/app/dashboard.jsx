@@ -103,7 +103,7 @@ export default function NutriWellHomeScreen() {
   const fetchDailyTotals = async (currentUserId) => {
     if (!currentUserId) return;
     try {
-      const response = await fetch(`http://10.12.25.176:5000/api/details/${currentUserId}/daily-totals`);
+      const response = await fetch(`http://10.133.50.176:5000/api/details/${currentUserId}/daily-totals`);
       const data = await response.json();
       console.log("response from daily-totals", data);
       if (data.totals) {
@@ -117,7 +117,7 @@ export default function NutriWellHomeScreen() {
   const fetchWeeklyTotals = async (currentUserId) => {
     if (!currentUserId) return;
     try {
-      const response = await fetch(`http://10.12.25.176:5000/api/details/${currentUserId}/weekly-totals`);
+      const response = await fetch(`http://10.133.50.176:5000/api/details/${currentUserId}/weekly-totals`);
       const data = await response.json();
       console.log("response from weekly-totals", data);
       if (data.weeklyTotals) {
@@ -154,7 +154,7 @@ export default function NutriWellHomeScreen() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch(`http://10.12.25.176:5000/api/auth/${userId}/basic-info`);
+        const response = await fetch(`http://10.133.50.176:5000/api/auth/${userId}/basic-info`);
         const data = await response.json();
 
         if (response.ok) {
@@ -402,28 +402,29 @@ export default function NutriWellHomeScreen() {
         </ScrollView>
 
         {/* Bottom Navigation Bar */}
-        <View style={styles.navbar}>
-          <TouchableOpacity style={styles.navItem} onPress={() => router.push('/dashboard')}>
-            <Ionicons name="home-outline" size={22} />
-            <Text style={styles.navLabel}>Dashboard</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem} onPress={() => router.push('/tracking')}>
-            <MaterialIcons name="insights" size={22} />
-            <Text style={styles.navLabel}>Tracking</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItemCenter} onPress={() => router.push('/logfood')}>
-            <Entypo name="plus" size={22} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem} onPress={() => router.push('/fitness')}>
-            <FontAwesome5 name="dumbbell" size={20} />
-            <Text style={styles.navLabel}>Fitness</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navItem} onPress={() => router.push('/chatbot')}>
-            <Ionicons name="chatbubbles-outline" size={22} />
-            <Text style={styles.navLabel}>Chatbot</Text>
-          </TouchableOpacity>
-        </View>
+
       </SafeAreaView>
+      <View style={styles.navbar}>
+        <TouchableOpacity style={styles.navItem} onPress={() => router.push('/dashboard')}>
+          <Ionicons name="home-outline" size={22} />
+          <Text style={styles.navLabel}>Dashboard</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItem} onPress={() => router.push('/tracking')}>
+          <MaterialIcons name="insights" size={22} />
+          <Text style={styles.navLabel}>Tracking</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItemCenter} onPress={() => router.push('/logfood')}>
+          <Entypo name="plus" size={22} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItem} onPress={() => router.push('/fitness')}>
+          <FontAwesome5 name="dumbbell" size={20} />
+          <Text style={styles.navLabel}>Fitness</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItem} onPress={() => router.push('/chatbot')}>
+          <Ionicons name="chatbubbles-outline" size={22} />
+          <Text style={styles.navLabel}>Chatbot</Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 }
@@ -602,21 +603,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingVertical: 10,
     paddingHorizontal: 12,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     borderTopWidth: 0.5,
     borderTopColor: '#ccc',
+
     position: 'absolute',
     bottom: 0,
-    width: '100%',
+    left: 0,
+    right: 0,       // ensures full width
   },
+
   navItem: {
     alignItems: 'center',
   },
   navItemCenter: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: '#f8ede1ff',
     width: 44,
     height: 44,
     borderRadius: 22,
+    borderColor: '#e1f3e6ff',
+    borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: -20,

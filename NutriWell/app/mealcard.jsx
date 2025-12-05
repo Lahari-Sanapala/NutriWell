@@ -57,14 +57,14 @@ export default function MealCard({ meal, router }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFEFD5',
     borderRadius: 12,
-    marginBottom: 16,
+    marginBottom: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 3,
   },
   content: {
     flexDirection: 'row',
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   imagePlaceholder: {
-    backgroundColor: '#eee',
+    backgroundColor: '#fdedd3ff',
   },
   info: {
     flex: 1,

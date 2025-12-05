@@ -38,8 +38,8 @@ export default function AuthScreen() {
 
     try {
       const endpoint = isLogin
-        ? "http://10.12.25.176:5000/api/auth/login"
-        : "http://10.12.25.176:5000/api/auth/signup";
+        ? "http://10.133.50.176:5000/api/auth/login"
+        : "http://10.133.50.176:5000/api/auth/signup";
 
       const payload = isLogin
         ? { email, password }
@@ -95,7 +95,7 @@ export default function AuthScreen() {
 
   return (
     <View style={styles.container}>
-      <Image source={logo} style={styles.logo} />
+
       <View style={styles.authBox}>
         <Text style={styles.title}>{isLogin ? 'Welcome User' : 'Create Account'}</Text>
         <Text style={styles.subtitle}>
@@ -164,7 +164,7 @@ export default function AuthScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#BEAFDA',
+    backgroundColor: '#f8ede1ff',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
     height: 100,
     resizeMode: 'contain',
     marginBottom: 20,
+
   },
   authBox: {
     backgroundColor: '#fff',
@@ -191,6 +192,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 4,
     textAlign: 'center',
+    color: '#2F4F4F',
   },
   subtitle: {
     fontSize: 15,
@@ -212,12 +214,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   forgot: {
-    color: '#6C63FF',
+    color: '#2F4F4F',
     alignSelf: 'flex-end',
     marginBottom: 16,
   },
   button: {
-    backgroundColor: '#6C63FF',
+    backgroundColor: '#2F4F4F',
     padding: 14,
     borderRadius: 12,
     alignItems: 'center',
@@ -229,7 +231,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   switch: {
-    color: '#6C63FF',
+    color: '#2F4F4F',
     textAlign: 'center',
     marginTop: 10,
   },

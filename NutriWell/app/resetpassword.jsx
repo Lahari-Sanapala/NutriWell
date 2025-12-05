@@ -20,7 +20,7 @@ export default function ResetPassword() {
     }
 
     try {
-      const res = await fetch(`http://10.12.25.176:5000/api/auth/reset-password/${token}`, {
+      const res = await fetch(`http://10.133.50.176:5000/api/auth/reset-password/${token}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ newPassword }),

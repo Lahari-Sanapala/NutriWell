@@ -17,7 +17,7 @@ export default function App() {
   const [lastUpdated, setLastUpdated] = useState(new Date());
 
   const fetchNotifications = () => {
-    fetch("http://10.12.25.176:6001/api/notifications/get")
+    fetch("http://10.133.50.176:6001/api/notifications/get")
       .then(res => res.json())
       .then(data => {
         setNotifications(data);

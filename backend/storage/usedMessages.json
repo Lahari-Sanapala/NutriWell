@@ -89,7 +89,12 @@
     "healthTips": [
       "Avoid skipping breakfast; it kick-starts your metabolism and provides energy for the day.",
       "Taking short breaks during long tasks can improve focus and productivity.",
-      "Limit your intake of processed foods to reduce the risk of chronic diseases."
+      "Limit your intake of processed foods to reduce the risk of chronic diseases.",
+      "Include a variety of colorful fruits and vegetables in your diet to ensure you're getting a range of nutrients.",
+      "Start your day with a glass of warm water.",
+      "Eat slowly and mindfully.",
+      "Aim for at least 30 minutes of moderate physical activity most days of the week.",
+      "Avoid sugar after 6 PM."
     ],
     "dietTips": [
       "Use herbs and spices to flavor your food instead of salt.",
@@ -101,7 +106,9 @@
       "Stay hydrated by drinking water throughout the day.",
       "Choose whole fruits over fruit juices to benefit from fiber.",
       "Reduce your intake of red and processed meats; choose lean proteins like chicken or fish.",
-      "Eat smaller portions to help manage your weight."
+      "Eat smaller portions to help manage your weight.",
+      "Incorporate legumes like beans and lentils into your diet for plant-based protein.",
+      "Plan your meals ahead to avoid last-minute unhealthy choices."
     ],
     "mentalHealthTips": [
       "Talk to someone you trust when you're feeling overwhelmed; sharing can lighten the load.",
@@ -112,7 +119,34 @@
       "Engage in activities that bring you joy, whether it's a hobby or spending time with loved ones.",
       "Limit screen time before bed to improve sleep quality.",
       "Keep a gratitude journal to focus on the positive aspects of your life.",
-      "Seek professional help if you're struggling; it's a sign of strength, not weakness."
+      "Seek professional help if you're struggling; it's a sign of strength, not weakness.",
+      "Spend time outdoors to boost your mood and vitamin D levels.",
+      "Take 5 minutes to meditate for your mental well-being.",
+      "Set realistic goals and break them into manageable steps."
+    ]
+  },
+  "2025-12-05": {
+    "healthTips": [],
+    "dietTips": [
+      "Try cutting down on carbs for better energy.",
+      "Incorporate legumes like beans and lentils into your diet for plant-based protein.",
+      "Add more vegetables to your meals for better digestion.",
+      "Start your day with a high-protein breakfast to keep you full longer.",
+      "Use herbs and spices to flavor your food instead of salt.",
+      "Plan your meals ahead to avoid last-minute unhealthy choices.",
+      "Limit sugary snacks and opt for nuts or yogurt as healthier alternatives.",
+      "Read nutrition labels to make informed food choices.",
+      "Stay hydrated by drinking water throughout the day.",
+      "Reduce your intake of red and processed meats; choose lean proteins like chicken or fish."
+    ],
+    "mentalHealthTips": [
+      "Seek professional help if you're struggling; it's a sign of strength, not weakness.",
+      "Learn to say no to commitments that cause unnecessary stress.",
+      "Practice mindfulness or meditation to reduce stress and improve focus.",
+      "Take 5 minutes to meditate for your mental well-being.",
+      "Engage in activities that bring you joy, whether it's a hobby or spending time with loved ones.",
+      "Keep a gratitude journal to focus on the positive aspects of your life.",
+      "Spend time outdoors to boost your mood and vitamin D levels."
     ]
   }
 }

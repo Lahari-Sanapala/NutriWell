@@ -53,13 +53,13 @@ export default function Chatbot() {
     try {
       // 1. Fetch today's meals and nutrition from Node.js backend
       console.log("user id before backend api", userId);
-      const response = await fetch(`http://10.12.25.176:5000/api/details/${userId}/getTodaysMealsAndNutrition`);
+      const response = await fetch(`http://10.133.50.176:5000/api/details/${userId}/getTodaysMealsAndNutrition`);
       const mealData = await response.json(); // ✅ Store it in a variable
 
       console.log("meal data from backend", mealData);
 
       // 2. Send it to the Flask chatbot server
-      const chatbotResponse = await axios.post("http://10.12.25.176:5001/chatbot", {
+      const chatbotResponse = await axios.post("http://10.133.50.176:5001/chatbot", {
         userData: mealData,
         query: trimmedQuery,
       });
@@ -85,7 +85,7 @@ export default function Chatbot() {
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <Ionicons name="arrow-back" size={24} color="#007bff" />
+        <Ionicons name="arrow-back" size={24} color='#2F4F4F' />
         <Text style={styles.backText}>Back</Text>
       </TouchableOpacity>
 
@@ -105,7 +105,7 @@ export default function Chatbot() {
             ]}
           >
             <Text style={styles.messageText}>
-              <Text style={styles.sender}>{chat.user}:</Text> {chat.text}
+              {chat.text}
             </Text>
           </View>
         ))}
@@ -136,7 +136,7 @@ export default function Chatbot() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: '#f8ede1ff',
     padding: 16,
   },
   backButton: {
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   },
   backText: {
     marginLeft: 6,
-    color: "#007bff",
+    color: '#2F4F4F',
     fontWeight: "600",
     fontSize: 16,
   },
@@ -155,33 +155,34 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
     marginBottom: 16,
-    color: "#333",
+    color: '#2F4F4F',
   },
   chatBox: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: '#f8ede1ff',
     borderRadius: 8,
     padding: 10,
     marginBottom: 10,
   },
   messageBubble: {
     padding: 10,
-    borderRadius: 18,
+    borderRadius: 10,
     maxWidth: "80%",
     marginBottom: 10,
+    backgroundColor: '#dbf0f0ff',
   },
   user: {
     alignSelf: "flex-end",
-    backgroundColor: "#007bff",
+    color: 'white',
   },
   bot: {
     alignSelf: "flex-start",
-    backgroundColor: "#9b87c3",
+    color: 'white',
   },
   messageText: {
     fontSize: 14,
     lineHeight: 20,
-    color: "#fff",
+    color: "black",
   },
   sender: {
     fontWeight: "bold",
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     maxHeight: 100,
   },
   sendButton: {
-    backgroundColor: "#007bff",
+    backgroundColor: '#2F4F4F',
     padding: 10,
     borderRadius: 50,
   },
@@ -212,4 +213,5 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
   },
+
 });

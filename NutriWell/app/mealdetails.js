@@ -19,30 +19,31 @@ import Svg, { Circle } from 'react-native-svg';
 const NutrientChart = ({ label, percentage, gramValue, color, size = 80 }) => {
   const strokeWidth = 6;
   const radius = (size - strokeWidth) / 2;
-
-  // Ensure radius is always valid
   const safeRadius = isNaN(radius) || radius <= 0 ? 1 : radius;
 
   const circumference = 2 * Math.PI * safeRadius;
-
-  // Safe percentage (0–100)
-  const safePercent =
-    isNaN(Number(percentage)) ? 0 : Math.min(Math.max(Number(percentage), 0), 100);
-
-  // Safe gram value
+  const safePercent = isNaN(Number(percentage)) ? 0 : Math.min(Math.max(Number(percentage), 0), 100);
   const safeGram = isNaN(Number(gramValue)) ? 0 : Number(gramValue);
 
-  // FINAL SAFE VALUE for stroke offset
-  const strokeDashoffset =
-    circumference - (safePercent / 100) * circumference;
-
+  const strokeDashoffset = circumference - (safePercent / 100) * circumference;
   const finalOffset = isNaN(strokeDashoffset) ? 0 : strokeDashoffset;
 
   return (
     <View style={styles.chartContainer}>
       <Svg width={size} height={size}>
+
+        {/* ⭐ Background white circle */}
         <Circle
-          stroke="#e0d0f0"
+          fill="'#f8ede1ff'"
+          cx={size / 2}
+          cy={size / 2}
+          r={safeRadius}
+          strokeWidth={0}
+        />
+
+        {/* Default grey ring */}
+        <Circle
+          stroke="white"
           fill="none"
           cx={size / 2}
           cy={size / 2}
@@ -50,6 +51,7 @@ const NutrientChart = ({ label, percentage, gramValue, color, size = 80 }) => {
           strokeWidth={strokeWidth}
         />
 
+        {/* Progress colored ring */}
         <Circle
           stroke={color}
           fill="none"
@@ -65,11 +67,16 @@ const NutrientChart = ({ label, percentage, gramValue, color, size = 80 }) => {
         />
       </Svg>
 
-      <Text style={styles.chartValue}>{safeGram}g</Text>
+      {/* ⭐ Text inside circle with color */}
+      <Text style={[styles.chartValue, { color }]}>
+        {safeGram}g
+      </Text>
+
       <Text style={styles.chartLabel}>{label}</Text>
     </View>
   );
 };
+
 
 export default function MealDetail() {
   const router = useRouter();
@@ -157,7 +164,7 @@ export default function MealDetail() {
 
         <View style={styles.header}>
           <TouchableOpacity onPress={() => router.back()} style={{ width: 30 }}>
-            <Ionicons name="arrow-back" size={30} color="#4a0072" />
+            <Ionicons name="arrow-back" size={30} color="#2F4F4F" />
           </TouchableOpacity>
           <View style={{ flex: 1, alignItems: 'center' }}>
             <Text style={styles.headerTitle}>Meal Details</Text>
@@ -225,7 +232,7 @@ export default function MealDetail() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f3e5f5',
+    backgroundColor: '#f8ede1ff',
   },
   safeArea: {
     flex: 1,
@@ -243,13 +250,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#4a0072',
+    color: '#2F4F4F',
   },
   card: {
-    backgroundColor: '#f3e5f5',
+    backgroundColor: '#ffefd5e8',
     borderRadius: 12,
     padding: 16,
-    elevation: 3,
+    elevation: 5,
   },
   image: {
     width: '100%',
@@ -260,26 +267,31 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#4a0072',
+    color: '#2F4F4F',
     textAlign: 'center',
     marginBottom: 6,
   },
   calories: {
     fontSize: 16,
-    color: '#6a1b9a',
+    color: '#2F4F4F',
     textAlign: 'center',
     marginBottom: 16,
   },
   macrosBox: {
-    backgroundColor: '#8c6ab8',
+    backgroundColor: '#f8ede1ff',
     padding: 12,
     borderRadius: 12,
     marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 2,
+    elevation: 1,
   },
   macroTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#2F4F4F',
     marginBottom: 12,
     textAlign: 'center',
   },
@@ -299,7 +311,7 @@ const styles = StyleSheet.create({
   },
   chartLabel: {
     fontSize: 14,
-    color: '#eaddff',
+    color: 'black',
     marginTop: 8,
   },
   error: {

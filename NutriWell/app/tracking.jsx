@@ -35,7 +35,7 @@ export default function Tracking() {
       try {
         setLoading(true);
         console.log("sending user id to meals route from tracking", userId)
-        const response = await fetch(`http://10.12.25.176:5000/api/details/${userId}/meals`);
+        const response = await fetch(`http://10.133.50.176:5000/api/details/${userId}/meals`);
 
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
@@ -63,13 +63,15 @@ export default function Tracking() {
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={{ padding: 16, paddingTop: 20 }} style={styles.container}>
+
       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <Ionicons name="arrow-back" size={24} color="#4a0072" />
-        <Text style={styles.backText}>Back</Text>
+        <Ionicons name="arrow-back" size={24} color="#2F4F4F" />
+        {/* <Text style={styles.backText}>Back</Text> */}
+        <Text style={styles.heading}>Meal Plan</Text>
       </TouchableOpacity>
 
-      <Text style={styles.heading}>Meal Plan</Text>
+
       {meals.length > 0 ? (
         meals.map(meal => (
           <MealCard key={meal.id} meal={meal} router={router} />
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#f8ede1ff', paddingTop: 20,
   },
   backButton: {
     flexDirection: 'row',
@@ -94,14 +96,15 @@ const styles = StyleSheet.create({
   },
   backText: {
     marginLeft: 8,
-    color: '#4a0072',
+    color: '#2F4F4F',
     fontSize: 16,
   },
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#4a0072',
+    marginBottom: 5,
+    marginLeft: 10,
+    color: '#2F4F4F',
   },
   noMealsText: {
     textAlign: 'center',

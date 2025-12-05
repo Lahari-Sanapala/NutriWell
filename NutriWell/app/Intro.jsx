@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'rea
 import intrologo from '../assets/images/intro.jpg';
 import { useRouter } from "expo-router";
 const HealthIntroScreen = () => {
-   const router=useRouter();
+  const router = useRouter();
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Circular Image */}
@@ -23,52 +23,52 @@ const HealthIntroScreen = () => {
 
       {/* Features */}
       <View style={styles.featureContainer}>
-  <Feature 
-    icon="🥦" 
-    text="Track Nutrients" 
-    desc="Log meals and get insights on calories, protein, carbs, and more" 
-  />
-  <Feature 
-    icon="📊" 
-    text="Daily & Weekly Summary" 
-    desc="View visual breakdowns of your nutrition, hydration, and sleep" 
-  />
-  <Feature 
-    icon="💡" 
-    text="Smart Food Suggestions" 
-    desc="Get diet tips and food ideas based on your health goals" 
-  />
-  <Feature 
-    icon="🏃‍♂️" 
-    text="Exercise Plans" 
-    desc="Personalized workouts to match your fitness and wellness targets" 
-  />
-  <Feature 
-    icon="💧" 
-    text="Hydration Tracker" 
-    desc="Track water intake and get timely reminders to stay hydrated" 
-  />
-  <Feature 
-    icon="🛌" 
-    text="Sleep Schedule" 
-    desc="Set healthy sleep goals and monitor rest quality for recovery" 
-  />
-  <Feature 
-    icon="🚨" 
-    text="Smart Alerts" 
-    desc="Stay informed on excessive nutrient intake & get healthy tips" 
-  />
-  <Feature 
-    icon="📈" 
-    text="Track Your Progress" 
-    desc="Set goals and view your improvements in health over time" 
-  />
-  <Feature 
-    icon="🧠" 
-    text="All-in-One Dashboard" 
-    desc="Monitor diet, activity, sleep & wellness in one simple view" 
-  />
-</View>
+        <Feature
+          icon="🥦"
+          text="Track Nutrients"
+          desc="Log meals and get insights on calories, protein, carbs, and more"
+        />
+        <Feature
+          icon="📊"
+          text="Daily & Weekly Summary"
+          desc="View visual breakdowns of your nutrition, hydration, and sleep"
+        />
+        <Feature
+          icon="💡"
+          text="Smart Food Suggestions"
+          desc="Get diet tips and food ideas based on your health goals"
+        />
+        <Feature
+          icon="🏃‍♂️"
+          text="Exercise Plans"
+          desc="Personalized workouts to match your fitness and wellness targets"
+        />
+        <Feature
+          icon="💧"
+          text="Hydration Tracker"
+          desc="Track water intake and get timely reminders to stay hydrated"
+        />
+        <Feature
+          icon="🛌"
+          text="Sleep Schedule"
+          desc="Set healthy sleep goals and monitor rest quality for recovery"
+        />
+        <Feature
+          icon="🚨"
+          text="Smart Alerts"
+          desc="Stay informed on excessive nutrient intake & get healthy tips"
+        />
+        <Feature
+          icon="📈"
+          text="Track Your Progress"
+          desc="Set goals and view your improvements in health over time"
+        />
+        <Feature
+          icon="🧠"
+          text="All-in-One Dashboard"
+          desc="Monitor diet, activity, sleep & wellness in one simple view"
+        />
+      </View>
 
 
       {/* Continue Button */}
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     color: '#666',
   },
   button: {
-    backgroundColor: '#8C77B3',
+    backgroundColor: '#2F4F4F',
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 24,

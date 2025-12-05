@@ -104,7 +104,7 @@ export default function editDetails() {
         healthIssues: healthIssuesList,
       };
 
-      const response = await fetch("http://10.12.25.176:5000/api/details/submit", {
+      const response = await fetch("http://10.133.50.176:5000/api/details/submit", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -180,7 +180,7 @@ export default function editDetails() {
         // const storedUserId = await AsyncStorage.getItem('userId');
         // if (!storedUserId) return;
 
-        const response = await fetch(`http://10.12.25.176:5000/api/details/${userId}/edit-details`);
+        const response = await fetch(`http://10.133.50.176:5000/api/details/${userId}/edit-details`);
         const data = await response.json();
 
         if (response.ok) {
