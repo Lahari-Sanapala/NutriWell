@@ -53,13 +53,13 @@ export default function Chatbot() {
     try {
       // 1. Fetch today's meals and nutrition from Node.js backend
       console.log("user id before backend api", userId);
-      const response = await fetch(`http://10.133.50.176:5000/api/details/${userId}/getTodaysMealsAndNutrition`);
+      const response = await fetch(`http://10.5.40.28:5000/api/details/${userId}/getTodaysMealsAndNutrition`);
       const mealData = await response.json(); // ✅ Store it in a variable
 
       console.log("meal data from backend", mealData);
 
       // 2. Send it to the Flask chatbot server
-      const chatbotResponse = await axios.post("http://10.133.50.176:5001/chatbot", {
+      const chatbotResponse = await axios.post("http://10.5.40.28:5001/chatbot", {
         userData: mealData,
         query: trimmedQuery,
       });

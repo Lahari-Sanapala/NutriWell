@@ -61,7 +61,8 @@ Before starting the numbered points, provide a single clean line starting with:
    - Hair Health
    - Sleep Quality
    - General Wellness
-5. Improvement Suggestions (if nutrition is imbalanced)
+5. Improvement Suggestions:
+   Provide **3–5 short bullet points**, each **a single actionable suggestion**, no long explanations.
 """
 @app.route('/analyze', methods=['POST'])
 def analyze():

@@ -673,5 +673,25 @@
     "type": "meal Reminder",
     "message": "Time for your meal! Don't miss it.",
     "time": "2025-12-05T06:20:00.014Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Engage in activities that bring you joy, whether it's a hobby or spending time with loved ones.",
+    "time": "2025-12-09T04:51:48.227Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Learn to say no to commitments that cause unnecessary stress.",
+    "time": "2025-12-09T05:00:00.012Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Talk to someone you trust when you're feeling overwhelmed; sharing can lighten the load.",
+    "time": "2025-12-09T05:10:00.014Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T05:20:00.260Z"
   }
 ]

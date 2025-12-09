@@ -77,7 +77,7 @@ router.post("/upload-image", async (req, res) => {
 
 
 
-    const pythonResponse = await axios.post("http://10.133.50.176:8501/analyze", {
+    const pythonResponse = await axios.post("http://10.5.40.28:8501/analyze", {
       base64Image,
       userId
     });
@@ -86,7 +86,7 @@ router.post("/upload-image", async (req, res) => {
     console.log("🍽 Summary:", summary);
 
     // Send summary to get calorie estimation
-    const pythonResponseCalorie = await axios.post("http://10.133.50.176:8501/analyzeCalorie", {
+    const pythonResponseCalorie = await axios.post("http://10.5.40.28:8501/analyzeCalorie", {
       summary
     });
 
