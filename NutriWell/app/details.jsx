@@ -34,6 +34,18 @@ export default function Details() {
   const [userId, setUserId] = useState(null);
   const baseURL = Constants.expoConfig.extra.BASE_URL;
 
+  const [activityLevel, setActivityLevel] = useState('');
+  const [activityModalVisible, setActivityModalVisible] = useState(false);
+
+  const activityOptions = [
+    'Sedentary',
+    'Light Active',
+    'Moderate Active',
+    'Heavy Active',
+    'Very Heavy'
+  ];
+
+
   useEffect(() => {
     const fetchData = async () => {
       const storedId = await AsyncStorage.getItem("userId");
@@ -63,11 +75,15 @@ export default function Details() {
     if (!state) newErrors.state = true;
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+
+
+
   };
 
   const validatePage3 = () => {
     const newErrors = {};
     if (!sleepHours || isNaN(sleepHours)) newErrors.sleepHours = true;
+    if (!activityLevel) newErrors.activityLevel = true;
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -94,6 +110,7 @@ export default function Details() {
         weight,
         state,
         sleepHours,
+        activityLevel,
         healthIssues: healthIssuesList,
       };
 
@@ -280,6 +297,45 @@ export default function Details() {
               onChangeText={setSleepHours}
             />
             <Text style={styles.note}>Good sleep impacts your overall health and energy.</Text>
+
+            <Text style={styles.label}>Activity Level:</Text>
+            <Text style={styles.note}>This helps calculate your calorie needs.</Text>
+
+            <TouchableOpacity
+              style={[styles.pickerButton, errors.activityLevel && styles.inputError]}
+              onPress={() => setActivityModalVisible(true)}
+            >
+              <Text>{activityLevel || "Select Activity Level"}</Text>
+            </TouchableOpacity>
+
+            <Modal visible={activityModalVisible} transparent animationType="slide">
+              <View style={styles.modalOverlay}>
+                <View style={styles.modalContent}>
+                  <FlatList
+                    data={activityOptions}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => (
+                      <TouchableOpacity
+                        style={styles.modalItem}
+                        onPress={() => {
+                          setActivityLevel(item);
+                          setActivityModalVisible(false);
+                        }}
+                      >
+                        <Text>{item}</Text>
+                      </TouchableOpacity>
+                    )}
+                  />
+                  <TouchableOpacity
+                    onPress={() => setActivityModalVisible(false)}
+                    style={{ padding: 10, alignSelf: "center" }}
+                  >
+
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
+
 
             <Text style={styles.label}>Health Issues:</Text>
             <Text style={styles.note}>Let us know any health issues to personalize your plan.</Text>

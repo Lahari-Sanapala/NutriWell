@@ -693,5 +693,160 @@
     "type": "General Reminder",
     "message": "Don’t forget to take care of your health today!",
     "time": "2025-12-09T05:20:00.260Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Take 5 minutes to meditate for your mental well-being.",
+    "time": "2025-12-09T05:30:00.018Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Keep a gratitude journal to focus on the positive aspects of your life.",
+    "time": "2025-12-09T05:40:00.025Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T05:50:00.294Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-09T06:00:00.010Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Choose whole fruits over fruit juices to benefit from fiber.",
+    "time": "2025-12-09T06:00:00.010Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Seek professional help if you're struggling; it's a sign of strength, not weakness.",
+    "time": "2025-12-09T06:00:00.010Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-09T06:10:00.014Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-09T06:20:00.010Z"
+  },
+  {
+    "type": "meal Reminder",
+    "message": "Time for your meal! Don't miss it.",
+    "time": "2025-12-09T06:30:00.014Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Lemon water is good for weight loss.",
+    "time": "2025-12-09T06:30:00.014Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Use herbs and spices to flavor your food instead of salt.",
+    "time": "2025-12-09T06:30:00.014Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T08:10:00.339Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Start your day with a high-protein breakfast to keep you full longer.",
+    "time": "2025-12-09T08:20:00.014Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Limit screen time before bed to improve sleep quality.",
+    "time": "2025-12-09T08:20:00.014Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T08:30:00.685Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T08:40:00.509Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Take time each day to relax and unwind; it's essential for mental well-being.",
+    "time": "2025-12-09T08:50:00.025Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T09:00:00.264Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T09:10:00.378Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T09:20:00.260Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Stay hydrated by drinking water throughout the day.",
+    "time": "2025-12-09T09:30:00.020Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Practice mindfulness or meditation to reduce stress and improve focus.",
+    "time": "2025-12-09T09:30:00.020Z"
+  },
+  {
+    "type": "Diet Tip",
+    "message": "Plan your meals ahead to avoid last-minute unhealthy choices.",
+    "time": "2025-12-09T09:40:00.008Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T09:50:00.232Z"
+  },
+  {
+    "type": "General Reminder",
+    "message": "Don’t forget to take care of your health today!",
+    "time": "2025-12-09T10:00:00.251Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Remember to take breaks during work to avoid burnout.",
+    "time": "2025-12-09T10:10:00.018Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Set realistic goals and break them into manageable steps.",
+    "time": "2025-12-09T10:20:00.020Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Eat slowly and mindfully.",
+    "time": "2025-12-09T10:30:00.015Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Incorporate whole grains like oats and brown rice into your meals for added fiber.",
+    "time": "2025-12-09T10:33:30.737Z"
+  },
+  {
+    "type": "Mental Health Tip",
+    "message": "Spend time outdoors to boost your mood and vitamin D levels.",
+    "time": "2025-12-09T10:33:30.737Z"
+  },
+  {
+    "type": "Health Tip",
+    "message": "Include a variety of colorful fruits and vegetables in your diet to ensure you're getting a range of nutrients.",
+    "time": "2025-12-09T10:40:00.021Z"
   }
 ]

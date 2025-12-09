@@ -91,23 +91,30 @@ router.post("/login", async (req, res) => {
 // Get user basic info (name, email) by userId
 router.get('/:userId/basic-info', async (req, res) => {
   try {
+    const { userId } = req.params;
+
     // Validate userId format
-    if (!mongoose.Types.ObjectId.isValid(req.params.userId)) {
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({ error: 'Invalid user ID format' });
     }
 
-    // Find the user in both collections
-    const user = await User.findOne({ _id: req.params.userId });
-
+    // Fetch user
+    const user = await User.findById(userId).lean();
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Return only the essential info
+    // Fetch user details
+    const userDetails = await UserDetails.findOne({ userId }).lean();
+
+    // Return combined info
     res.json({
       fullName: user.fullName,
       email: user.email,
-      userId: user._id
+      userId: user._id,
+      activityLevel: userDetails?.activityLevel || null,
+      activityMultiplier: userDetails?.activityMultiplier || null,
+      tdee: userDetails?.tdee || null
     });
 
   } catch (error) {

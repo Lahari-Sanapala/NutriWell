@@ -150,12 +150,32 @@
     ]
   },
   "2025-12-09": {
-    "healthTips": [],
-    "dietTips": [],
+    "healthTips": [
+      "Lemon water is good for weight loss.",
+      "Eat slowly and mindfully.",
+      "Incorporate whole grains like oats and brown rice into your meals for added fiber.",
+      "Include a variety of colorful fruits and vegetables in your diet to ensure you're getting a range of nutrients."
+    ],
+    "dietTips": [
+      "Choose whole fruits over fruit juices to benefit from fiber.",
+      "Use herbs and spices to flavor your food instead of salt.",
+      "Start your day with a high-protein breakfast to keep you full longer.",
+      "Stay hydrated by drinking water throughout the day.",
+      "Plan your meals ahead to avoid last-minute unhealthy choices."
+    ],
     "mentalHealthTips": [
       "Engage in activities that bring you joy, whether it's a hobby or spending time with loved ones.",
       "Learn to say no to commitments that cause unnecessary stress.",
-      "Talk to someone you trust when you're feeling overwhelmed; sharing can lighten the load."
+      "Talk to someone you trust when you're feeling overwhelmed; sharing can lighten the load.",
+      "Take 5 minutes to meditate for your mental well-being.",
+      "Keep a gratitude journal to focus on the positive aspects of your life.",
+      "Seek professional help if you're struggling; it's a sign of strength, not weakness.",
+      "Limit screen time before bed to improve sleep quality.",
+      "Take time each day to relax and unwind; it's essential for mental well-being.",
+      "Practice mindfulness or meditation to reduce stress and improve focus.",
+      "Remember to take breaks during work to avoid burnout.",
+      "Set realistic goals and break them into manageable steps.",
+      "Spend time outdoors to boost your mood and vitamin D levels."
     ]
   }
 }

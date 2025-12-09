@@ -41,6 +41,7 @@ User Details:
 - Weight: {weight} kg
 - Sleep Hours: {sleepHours} hrs
 - Health Issues: {healthIssues}
+- Activity Level: {activityLevel}
 
 
 Before starting the numbered points, provide a single clean line starting with:
@@ -88,6 +89,7 @@ def analyze():
             "height": user_details.get("height", ""),
             "weight": user_details.get("weight", ""),
             "sleepHours": user_details.get("sleepHours", ""),
+            "activityLevel": user_details.get("activityLevel", ""),
             "healthIssues": ", ".join(user_details.get("healthIssues", []))
         }
 

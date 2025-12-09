@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
+
+
 import {
   View, Text, TextInput, TouchableOpacity, StyleSheet,
   ScrollView, Alert, FlatList, Modal, ImageBackground
@@ -19,6 +21,14 @@ const indianStates = [
   'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura',
   'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Delhi'
 ];
+const activityOptions = [
+  "Sedentary",
+  "Light Active",
+  "Moderate Active",
+  "Heavy Active",
+  "Very Heavy"
+];
+
 
 export default function editDetails() {
   const [page, setPage] = useState(1);
@@ -31,6 +41,8 @@ export default function editDetails() {
   const [sleepHours, setSleepHours] = useState('');
   const [healthIssue, setHealthIssue] = useState('');
   const [healthIssuesList, setHealthIssuesList] = useState([]);
+  const [activityLevel, setActivityLevel] = useState('');
+  const [activityModal, setActivityModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -58,6 +70,7 @@ export default function editDetails() {
   const validatePage3 = () => {
     const newErrors = {};
     if (!sleepHours || isNaN(sleepHours)) newErrors.sleepHours = true;
+    if (!activityLevel) newErrors.activityLevel = true;
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -101,6 +114,7 @@ export default function editDetails() {
         weight,
         state,
         sleepHours,
+        activityLevel,
         healthIssues: healthIssuesList,
       };
 
@@ -159,6 +173,9 @@ export default function editDetails() {
   };
 
 
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       const storedId = await AsyncStorage.getItem("userId");
@@ -191,6 +208,7 @@ export default function editDetails() {
           setWeight(data.weight?.toString() || '');
           setState(data.state || '');
           setSleepHours(data.sleepHours?.toString() || '');
+          setActivityLevel(data.activityLevel || '');
           setHealthIssuesList(data.healthIssues || []);
         } else {
           console.warn("User details not found or server error");
@@ -203,7 +221,45 @@ export default function editDetails() {
     fetchUserDetails();
   }, [userId]);
 
+  const renderActivityPicker = () => (
+    <>
+      <TouchableOpacity
+        style={[styles.pickerButton]}
+        onPress={() => setActivityModal(true)}
+      >
+        <Text>{activityLevel || "Select Activity Level"}</Text>
+      </TouchableOpacity>
 
+      <Modal visible={activityModal} transparent animationType="slide">
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <FlatList
+              data={activityOptions || []}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.modalItem}
+                  onPress={() => {
+                    setActivityLevel(item);
+                    setActivityModal(false);
+                  }}
+                >
+                  <Text>{item}</Text>
+                </TouchableOpacity>
+              )}
+            />
+            <TouchableOpacity
+              onPress={() => setActivityModal(false)}
+              style={{ padding: 10, alignSelf: "center" }}
+            >
+              <Text style={{ color: "red" }}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </>
+
+  );
 
   const renderPicker = () => (
     <>
@@ -218,7 +274,7 @@ export default function editDetails() {
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <FlatList
-              data={indianStates}
+              data={indianStates || []}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => (
                 <TouchableOpacity
@@ -328,6 +384,11 @@ export default function editDetails() {
             />
             <Text style={styles.note}>Good sleep impacts your overall health and energy.</Text>
 
+            <Text style={styles.label}>Activity Level:</Text>
+            <Text style={styles.note}>Your daily activity helps calculate calorie burn.</Text>
+            {renderActivityPicker()}
+
+
             <Text style={styles.label}>Health Issues:</Text>
             <Text style={styles.note}>Let us know any health issues to personalize your plan.</Text>
             <View style={styles.healthInputRow}>
@@ -343,7 +404,7 @@ export default function editDetails() {
             </View>
 
             <FlatList
-              data={healthIssuesList}
+              data={healthIssuesList || []}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item, index }) => (
                 <View style={styles.issueRow}>

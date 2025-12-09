@@ -121,6 +121,7 @@ const SnapMeal = () => {
         state,
         sleepHours,
         healthIssues,
+        activityLevel,
       } = userDetails;
 
 
@@ -137,6 +138,7 @@ const SnapMeal = () => {
           weight,
           state,
           sleepHours,
+          activityLevel,
           healthIssues
         }),
       });

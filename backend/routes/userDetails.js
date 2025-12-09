@@ -3,11 +3,50 @@ const express = require("express");
 const router = express.Router();
 //const UserDetails = require("../models/UserDetails");
 const axios = require('axios')
-const User = require("../models/UserDetails");
+const UserDetails = require("../models/UserDetails");
 const mongoose = require("mongoose");
+
 const moment = require("moment-timezone");
 const { getAllNotifications } = require('../storage/store');
 require("dotenv").config();
+
+const activityMultipliers = {
+  "Sedentary": 1.2,
+  "Light Active": 1.375,
+  "Moderate Active": 1.55,
+  "Heavy Active": 1.725,
+  "Very Heavy": 1.9
+};
+
+function calculateNutrition({ age, gender, height, weight, activityLevel }) {
+  if (!age || !gender || !height || !weight || !activityLevel) {
+    return null;
+  }
+
+  // BMR — Mifflin St Jeor
+  let BMR;
+  if (gender === "Male") {
+    BMR = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    BMR = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  const multiplier = activityMultipliers[activityLevel] || 1.2;
+  const TDEE = BMR * multiplier;
+
+  // Macros
+  const carbs = (0.50 * TDEE) / 4;
+  const protein = (0.20 * TDEE) / 4;
+  const fat = (0.30 * TDEE) / 9;
+
+  return {
+    TDEE: Math.round(TDEE),
+    carbs: Math.round(carbs),
+    protein: Math.round(protein),
+    fat: Math.round(fat)
+  };
+}
+
 
 const baseURL = process.env.BASE_URL;
 const getIndianDate = () => {
@@ -24,34 +63,106 @@ const getIndianDate = () => {
   return indianTime.toISOString().split('T')[0];
 };
 
+// router.post("/submit", async (req, res) => {
+//   try {
+//     const { userId, ...details } = req.body;
+//     if (!mongoose.Types.ObjectId.isValid(userId)) {
+//       return res.status(400).json({ error: "Invalid user ID format" });
+//     }
+
+//     const userIdd = new mongoose.Types.ObjectId(userId);
+//     // const existing = await User.findOne({ userId: userIdd });
+//     const existing = await User.findById(userIdd) // if you're querying by _id
+
+
+//     if (existing) {
+//       await User.findOneAndUpdate({ userId: userIdd }, details);
+//       return res.json({ message: "Updated successfully" });
+//     }
+
+//     const userDetails = new User({ userId: userIdd, ...details });
+
+
+
+//     await userDetails.save();
+//     res.status(201).json({ message: "Details saved", userDetails });
+//   } catch (err) {
+//     console.error("Error in /submit:", err);
+//     res.status(500).json({ message: "Error saving details", error: err.message });
+//   }
+// });
+
+
+
 router.post("/submit", async (req, res) => {
   try {
-    const { userId, ...details } = req.body;
+    const {
+      userId,
+      name,
+      gender,
+      age,
+      height,
+      weight,
+      state,
+      sleepHours,
+      activityLevel,
+      healthIssues
+    } = req.body;
+
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({ error: "Invalid user ID format" });
     }
 
-    const userIdd = new mongoose.Types.ObjectId(userId);
-    // const existing = await User.findOne({ userId: userIdd });
-    const existing = await User.findById(userIdd) // if you're querying by _id
+    // userId is already an ObjectId string → no need to wrap
+    const existingDetails = await UserDetails.findOne({ userId });
 
+    if (existingDetails) {
+      // Update fields
+      existingDetails.name = name;
+      existingDetails.gender = gender;
+      existingDetails.age = age;
+      existingDetails.height = height;
+      existingDetails.weight = weight;
+      existingDetails.state = state;
+      existingDetails.sleepHours = sleepHours;
+      existingDetails.activityLevel = activityLevel;
+      existingDetails.healthIssues = healthIssues;
 
-    if (existing) {
-      await User.findOneAndUpdate({ userId: userIdd }, details);
-      return res.json({ message: "Updated successfully" });
+      await existingDetails.save();
+
+      return res.json({ message: "User details updated successfully" });
     }
 
-    const userDetails = new User({ userId: userIdd, ...details });
+    // Create new user details
+    const newUserDetails = new UserDetails({
+      _id: new mongoose.Types.ObjectId(),
+      userId,
+      name,
+      gender,
+      age,
+      height,
+      weight,
+      state,
+      sleepHours,
+      activityLevel,
+      healthIssues,
+      food: []
+    });
 
+    await newUserDetails.save();
 
+    res.status(201).json({
+      message: "User details saved successfully",
+      userDetails: newUserDetails
+    });
 
-    await userDetails.save();
-    res.status(201).json({ message: "Details saved", userDetails });
   } catch (err) {
     console.error("Error in /submit:", err);
-    res.status(500).json({ message: "Error saving details", error: err.message });
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 });
+
+
 
 router.post("/upload-image", async (req, res) => {
   try {
@@ -70,7 +181,7 @@ router.post("/upload-image", async (req, res) => {
     }
     // ✅ Step 1: Find the user from DB
     console.log("we got user id from frontend in upload image route", userIdd)
-    const user = await User.findOne({ userId: userIdd });
+    const user = await UserDetails.findOne({ userId: userIdd });
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -153,7 +264,7 @@ router.get('/:userId/meals', async (req, res) => {
     }
 
     const userIdd = new mongoose.Types.ObjectId(req.params.userId);
-    const user = await User.findOne({ userId: userIdd });
+    const user = await UserDetails.findOne({ userId: userIdd });
     if (!user) return res.status(404).json({ error: 'User not found' });
 
     // Get current system date (without time component)
@@ -216,7 +327,7 @@ router.get('/:userId/daily-totals', async (req, res) => {
     const currentDate = getIndianDate();
     console.log("current system date", currentDate)
 
-    const user = await User.findOne({ userId: userIdd });
+    const user = await UserDetails.findOne({ userId: userIdd });
     if (!user) return res.status(404).json({ error: 'User not found' });
 
     const todaysMeals = user.food.filter(meal => {
@@ -273,7 +384,7 @@ router.get('/:userId/weekly-totals', async (req, res) => {
       dateStrings.push(date.toISOString().split('T')[0]);
     }
 
-    const user = await User.findOne({ userId: userIdd });
+    const user = await UserDetails.findOne({ userId: userIdd });
     if (!user) return res.status(404).json({ error: 'User not found' });
 
     // Initialize totals
@@ -342,24 +453,54 @@ router.get('/:userId/weekly-totals', async (req, res) => {
   }
 });
 
-router.get('/:userId/edit-details', async (req, res) => {
+// router.get('/:userId/edit-details', async (req, res) => {
+//   try {
+//     if (!mongoose.Types.ObjectId.isValid(req.params.userId)) {
+//       return res.status(400).json({ error: 'Invalid user ID format' });
+//     }
+
+//     const userId = new mongoose.Types.ObjectId(req.params.userId);
+//     const userDetails = await User.findOne({ userId: userId });
+//     if (!userDetails) return res.status(404).json({ error: "User details not found" });
+
+//     res.json(userDetails);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: "Server error" });
+//   }
+// });
+router.get("/:userId/edit-details", async (req, res) => {
   try {
-    if (!mongoose.Types.ObjectId.isValid(req.params.userId)) {
-      return res.status(400).json({ error: 'Invalid user ID format' });
+    const { userId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ error: "Invalid user ID" });
     }
 
-    const userId = new mongoose.Types.ObjectId(req.params.userId);
-    const userDetails = await User.findOne({ userId: userId });
-    if (!userDetails) return res.status(404).json({ error: "User details not found" });
+    const userDetails = await UserDetails.findOne({ userId });
 
-    res.json(userDetails);
+    if (!userDetails) {
+      return res.status(404).json({ error: "User details not found" });
+    }
+
+    res.json({
+      name: userDetails.name,
+      gender: userDetails.gender,
+      age: userDetails.age,
+      height: userDetails.height,
+      weight: userDetails.weight,
+      state: userDetails.state,
+      sleepHours: userDetails.sleepHours,
+      activityLevel: userDetails.activityLevel,
+      healthIssues: userDetails.healthIssues,
+      food: userDetails.food
+    });
+
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server error" });
+    console.error("Error in /edit-details:", err);
+    res.status(500).json({ error: "Server error", details: err.message });
   }
 });
-
-
 
 
 router.get('/:userId/getTodaysMealsAndNutrition', async (req, res) => {
@@ -373,7 +514,7 @@ router.get('/:userId/getTodaysMealsAndNutrition', async (req, res) => {
 
     const userIdd = new mongoose.Types.ObjectId(req.params.userId);
     console.log("user id in backend route getTodayMealsandnutritiron", userIdd);
-    const user = await User.findOne({ userId: userIdd });
+    const user = await UserDetails.findOne({ userId: userIdd });
     //const user = await User.findOne({ userId : userIdd });
     if (!user) return res.status(404).json({ error: 'User not found' });
 

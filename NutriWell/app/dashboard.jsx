@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Modal, Pressable, View, Text, FlatList, SafeAreaView, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
+import { Modal, Pressable, View, Text, FlatList, SafeAreaView, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground, Dimensions, LogBox } from 'react-native';
 import { Ionicons, MaterialIcons, FontAwesome5, Entypo } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { PieChart } from 'react-native-chart-kit';
@@ -7,6 +7,11 @@ import * as Progress from 'react-native-progress';
 import img from "../assets/images/blue_green.jpeg";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from "expo-constants";
+import { useMemo } from 'react';
+
+LogBox.ignoreLogs([
+  'VirtualizedLists should never be nested inside plain ScrollViews'
+]);
 
 const dietPlans = [
   {
@@ -61,6 +66,25 @@ const dietPlans = [
 
 
 
+const getCalorieGoal = (activity) => {
+  if (!activity) return 2200;
+
+  switch (activity.toLowerCase().trim()) {
+    case "sedentary":
+      return 1800;
+    case "light active":
+      return 2000;
+    case "moderate active":
+      return 2300;
+    case "heavy active":
+      return 2600;
+    case "very heavy":
+      return 3000;
+    default:
+      return 2200;
+  }
+};
+
 
 const DietCard = ({ title, description, backgroundColor, image, isImageRight }) => {
   const textAlignStyle = isImageRight ? { paddingRight: 80 } : { paddingLeft: 80 };
@@ -99,6 +123,10 @@ export default function NutriWellHomeScreen() {
     protein: 0,
     fat: 0
   });
+
+  const [activityLevel, setActivityLevel] = useState(null);
+
+  console.log("ActivityLevel:", activityLevel)
 
   const fetchDailyTotals = async (currentUserId) => {
     if (!currentUserId) return;
@@ -161,6 +189,7 @@ export default function NutriWellHomeScreen() {
           console.log('User info:', data);
           setFullName(data.fullName);
           setEmail(data.email);
+          setActivityLevel(data.activityLevel);
         } else {
           throw new Error(data.error || 'Failed to fetch user info');
         }
@@ -186,7 +215,9 @@ export default function NutriWellHomeScreen() {
   const fatPercentage = totalMacronutrients > 0 ? (dailyTotals.fat / totalMacronutrients) * 100 : 0;
 
   // Daily calorie goal (adjust as needed)
-  const dailyCalorieGoal = 2500;
+
+  const dailyCalorieGoal = useMemo(() => getCalorieGoal(activityLevel), [activityLevel]);
+
   const handleLogout = async () => {
     try {
       // Remove the userId from AsyncStorage
@@ -322,7 +353,7 @@ export default function NutriWellHomeScreen() {
           <View style={styles.card}>
             <Text style={styles.cardTitle}>Weekly</Text>
             <Text style={styles.label}>Calories</Text>
-            <Text style={styles.value}>{weeklyTotals.calories} / {2500 * 7} KCal</Text>
+            <Text style={styles.value}>{weeklyTotals.calories} / {dailyCalorieGoal * 7} KCal</Text>
           </View>
 
           {/* Macronutrients */}
@@ -386,7 +417,7 @@ export default function NutriWellHomeScreen() {
 
           <Text style={styles.headerText}>Eat Well Live Well</Text>
           <FlatList
-            data={dietPlans}
+            data={dietPlans || []}
             keyExtractor={(item) => item.title}
             renderItem={({ item, index }) => (
               <DietCard
@@ -398,6 +429,7 @@ export default function NutriWellHomeScreen() {
               />
             )}
             contentContainerStyle={{ paddingBottom: 30 }}
+            nestedScrollEnabled={true}
           />
         </ScrollView>
 
